@@ -1,0 +1,196 @@
+<!doctype html>
+<html ng-app="publicApp">
+  <head>
+    <meta charset="utf-8">
+    <title>IndiaReads</title>
+    <meta name="description" content="">
+    <meta name= "viewport" content ="width=device-width, initial-scale=1.0">
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" /> -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link ng-href="app/styles/uistyles/irstyle.css" rel="stylesheet">
+    <link ng-href="app/styles/uistyles/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link ng-href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link ng-href="bower_components/slick-carousel/slick/slick.css" rel="stylesheet">
+    <link ng-href="bower_components/slick-carousel/slick/slick-theme.css" rel="stylesheet">
+    <link ng-href="app/styles/uistyles/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link ng-href="bower_components/AngularJS-Toaster/toaster.min.css" rel="stylesheet">
+    <base href='/'>
+  </head>
+  <body >
+    <!--[if lte IE 8]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+   <div>
+    <div ng-include src="'app/views/header.html'"></div>
+    <toaster-container align="left"></toaster-container>
+
+    <div ui-view class="container pageminheight"></div>
+    <div ng-include src="'app/views/footer.html'"></div>
+  </div>
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+
+    <script src="app/scripts/uiscripts/spin.min.js"></script>
+
+
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-css/angular-css.min.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <!-- <script src="bower_components/satellizer/satellizer.min.js"></script> -->
+    <script src="bower_components/angular-img-fallback/angular.dcb-img-fallback.min.js"></script>
+    <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.min.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/angular-moment/angular-moment.min.js"></script>
+    <script src="bower_components/angular-auto-validate/dist/jcs-auto-validate.min.js"></script>
+    <script src="bower_components/angular-spinner/angular-spinner.min.js"></script>
+    <script src="bower_components/AngularJS-Toaster/toaster.min.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.min.js" ></script>
+
+
+    <script type="text/javascript" src="app/scripts/uiscripts/slick.min.js"></script>
+    <script src="bower_components/angular-slick/dist/slick.js"></script>
+    <!-- endbower -->
+
+
+
+
+    <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="app/scripts/app.js"></script>
+    <script src="app/scripts/controllers/main.js"></script>
+    <script src="app/scripts/controllers/about.js"></script>
+    <script src="app/scripts/controllers/catlist.js"></script>
+    <script src="app/scripts/controllers/myaccount.js"></script>
+    <script src="app/scripts/controllers/accountbookshelf.js"></script>
+    <script src="app/scripts/controllers/bookshelfcurrently.js"></script>
+    <script src="app/scripts/controllers/bookshelfwishlist.js"></script>
+    <script src="app/scripts/controllers/bookshelfhistory.js"></script>
+    <script src="app/scripts/controllers/bookshelfavailable.js"></script>
+    <script src="app/scripts/controllers/accountmyorders.js"></script>
+    <script src="app/scripts/controllers/accountmyprofile.js"></script>
+    <script src="app/scripts/controllers/accountstorecredits.js"></script>
+    <script src="app/scripts/controllers/accountaddressbook.js"></script>
+    <script src="app/scripts/controllers/accountlogout.js"></script>
+    <script src="app/scripts/controllers/accountchangepassword.js"></script>
+    <script src="app/scripts/controllers/search.js"></script>
+    <script src="app/scripts/controllers/login.js"></script>
+    <script src="app/scripts/controllers/thankyou.js"></script>
+    <script src="app/scripts/controllers/returnsummary.js"></script>
+    <script src="app/scripts/controllers/header.js"></script>
+    <script src="app/scripts/controllers/product.js"></script>
+    <script src="app/scripts/controllers/setpassword.js"></script>
+    <script src="app/scripts/controllers/forgot.js"></script>
+    <script src="app/scripts/controllers/forgotpassword.js"></script>
+    <script src="app/scripts/controllers/returncart.js"></script>
+    <script src="app/scripts/controllers/howitworks.js"></script>
+    <script src="app/scripts/controllers/new.js"></script>
+    <script src="app/scripts/controllers/recommended.js"></script>
+    <script src="app/scripts/controllers/popular.js"></script>
+    <script src="app/scripts/controllers/contactus.js"></script>
+    <script src="app/scripts/controllers/pickup.js"></script>
+    <script src="app/scripts/controllers/rentalcart.js"></script>
+    <script src="app/scripts/controllers/checkout.js"></script>
+    <script src="app/scripts/controllers/checkoutlogin.js"></script>
+    <script src="app/scripts/controllers/checkoutdeliveryaddress.js"></script>
+    <script src="app/scripts/controllers/checkoutpayment.js"></script>
+    <script src="app/scripts/controllers/checkoutordersummary.js"></script>
+
+    <script src="app/scripts/controllers/supercategory.js"></script>
+    <script src="app/scripts/controllers/parentcategory.js"></script>
+
+
+    <!-- Factories -->
+    <script src="app/scripts/factories/newbook.js"></script>
+    <script src="app/scripts/factories/login.js"></script>
+    <script src="app/scripts/factories/checkoutcod.js"></script>
+    <script src="app/scripts/factories/trendingbook.js"></script>
+    <script src="app/scripts/factories/recommendedbook.js"></script>
+    <script src="app/scripts/factories/parentbooks.js"></script>
+    <script src="app/scripts/factories/superbooks.js"></script>
+    <script src="app/scripts/factories/setpassword.js"></script>
+    <script src="app/scripts/factories/product.js"></script>
+    <script src="app/scripts/factories/new.js"></script>
+    <script src="app/scripts/factories/popular.js"></script>
+    <script src="app/scripts/factories/recommended.js"></script>
+    <script src="app/scripts/factories/cart.js"></script>
+    <script src="app/scripts/factories/paytm.js"></script>
+    <script src="app/scripts/factories/available.js"></script>
+    <script src="app/scripts/factories/currently.js"></script>
+    <script src="app/scripts/factories/history.js"></script>
+    <script src="app/scripts/factories/wishlist.js"></script>
+    <script src="app/scripts/factories/payumoney.js"></script>
+    <script src="app/scripts/factories/payumoneyserver.js"></script>
+    <script src="app/scripts/factories/deliveryaddress.js"></script>
+    <script src="app/scripts/factories/loading.js"></script>
+    <script src="app/scripts/factories/category.js"></script>
+    <script src="app/scripts/factories/cat1books.js"></script>
+    <script src="app/scripts/factories/cat2books.js"></script>
+    <script src="app/scripts/factories/signup.js"></script>
+    <script src="app/scripts/factories/addaddress.js"></script>
+    <script src="app/scripts/factories/forgotpassword.js"></script>
+    <script src="app/scripts/factories/addtobookshelf.js"></script>
+    <script src="app/scripts/factories/notifybookshelf.js"></script>
+    <script src="app/scripts/factories/preorder.js"></script>
+    <script src="app/scripts/factories/myprofile.js"></script>
+    <script src="app/scripts/factories/myorders.js"></script>
+    <script src="app/scripts/factories/editmyprofile.js"></script>
+    <script src="app/scripts/factories/storecredits.js"></script>
+    <script src="app/scripts/factories/storecreditdetails.js"></script>
+    <script src="app/scripts/factories/search.js"></script>
+
+    <!-- Services -->
+    <script src="app/scripts/services/homepage.js"></script>
+    <script src="app/scripts/services/login.js"></script>
+    <script src="app/scripts/services/catlist.js"></script>
+    <script src="app/scripts/services/setpassword.js"></script>
+    <script src="app/scripts/services/product.js"></script>
+    <script src="app/scripts/services/new.js"></script>
+    <script src="app/scripts/services/popular.js"></script>
+    <script src="app/scripts/services/recommended.js"></script>
+    <script src="app/scripts/services/checkoutservice.js"></script>
+    <script src="app/scripts/services/bookshelf.js"></script>
+    <script src="app/scripts/services/payumoney.js"></script>
+    <script src="app/scripts/services/deliveryaddress.js"></script>
+    <script src="app/scripts/services/signup.js"></script>
+    <script src="app/scripts/services/addaddress.js"></script>
+    <script src="app/scripts/services/forgotpassword.js"></script>
+    <script src="app/scripts/services/addtobookshelf.js"></script>
+    <script src="app/scripts/services/notifybookshelf.js"></script>
+    <script src="app/scripts/services/myprofile.js"></script>
+    <script src="app/scripts/services/myorders.js"></script>
+    <script src="app/scripts/services/editmyprofile.js"></script>
+    <script src="app/scripts/services/storecredits.js"></script>
+    <script src="app/scripts/services/storecreditdetails.js"></script>
+    <script src="app/scripts/services/search.js"></script>
+
+    <!-- Directives -->
+    <script src="app/scripts/directives/submitform.js"></script>
+
+    <!-- ui script -->
+    <script src="app/scripts/uiscripts/irscript.js"></script>
+
+    <!--[if lte IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/Base64/0.3.0/base64.min.js"></script>
+    <![endif]-->
+    <script src="//cdn.jsdelivr.net/satellizer/0.13.1/satellizer.min.js"></script>
+</body>
+</html>

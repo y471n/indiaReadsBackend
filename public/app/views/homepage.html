@@ -1,0 +1,362 @@
+<div id="homecontent">
+  <div id="homebanner" class="carousel slide hidden-xs hidden-sm" data-ride="carousel">
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+        <img src="app/images/images/how-it-works.png">
+      </div>
+      <div class="item">
+        <img src="app/images/images/banner3r.gif">
+      </div>
+      <div class="item">
+        <img src="app/images/images/offers.gif">
+      </div>
+        <ul class="carousel-indicators indicator-step">
+          <li data-target="#homebanner" data-slide-to="0" class="up-arrow active"><span>How it works</span></li>
+          <li data-target="#homebanner" data-slide-to="1" class="up-arrow"><span>"3Rs"</span></li>
+          <li data-target="#homebanner" data-slide-to="2" class="up-arrow"><span>Offers</span></li>
+        </ul>
+    </div>
+  </div>
+  <slick class="hidden-lg hidden-md home-mob-banner" dots="true" autoplay="true">
+        <div>
+          <img src="app/images/images/mobile_home_page_1.png" alt="" class="img-responsive">
+        </div>
+        <div>
+          <img src="app/images/images/mobile_home_page_1.png" alt="" class="img-responsive">
+        </div>
+        <div>
+          <img src="app/images/images/mobile_home_page_1.png" alt="" class="img-responsive">
+        </div>
+    </slick>
+
+  <div class="row newsfeed">
+      <div class="col-lg-2 tag">News Feeds</div>
+      <div class="col-lg-10 content carousel slide" data-ride="carousel" id="newsfeed">
+          <div class="carousel-inner">
+            <div class="item active">
+                <p class="margintop"><a href="#">I never dream about success, I work for it!</a></p>
+            </div>
+            <div class="item">
+                <p class="margintop"><a href="#">Do what you love, Love what you do</a></p>
+            </div>
+            <div class="item">
+                <p class="margintop"><a href="#">Great minds discuss IDEAS, average minds discuss EVENTS, small minds discuss PEOPLE!</a></p>
+            </div>
+        </div>
+        <a class="left carousel-control" data-target="#newsfeed" role="button" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" data-target="#newsfeed" role="button" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+  </div><!-- newsfeed -->
+
+  <div class="input-group col-md-12" align="center" ng-show="in_loading">
+
+        <img class="spinner"  src="app/images/images/spinner.gif" />
+
+    </div>
+    <div class="input-group col-md-12" align="center" ng-show="in_loading_trending">
+      <img class="spinner"  src="app/images/images/spinner.gif" />
+    </div>
+  <div class="container carousel-contain" id="trendingcarousel" ng-hide="in_loading_trending">
+      <div class="carousel-heading">
+          <h3><b>Trending</b></h3>
+      </div>
+      <!-- trendingcarousel -->
+     <slick speed=1000 ng-if="loadedTrending" responsive="breakpoints" next-arrow=".right.first" prev-arrow=".left.first" infinite="false">
+          <div ng-repeat="trendingBook in homepageService.trendingbooks" id="slideitem">
+            <a ui-sref="product({isbn: trendingBook.isbn13, name: sluggifyTitle(book.title),
+              category: sluggifyTitle(categoryName)})" class="thumbnail carousel-item rentstarts"
+                ng-mouseover="getRent(trendingBook.isbn13, 'trending')">
+              <img ng-src="https://s3-ap-southeast-1.amazonaws.com/ireads/images/books/{{trendingBook.isbn13}}.jpg"alt="a">
+              <p class="row-centered" ng-show="trendingBook.title">{{trendingBook.title}}</p>
+              <p class="row-centered" ng-show="!trendingBook.title">Dummy title</p>
+              <div class="onHvShw">
+                <p><b>Rent starts from</b></p>
+                <p align="center" id="red-text" ng-if="trendingBook.rent"><b>{{trendingBook.rent | currency:"&#8377 ":0}}</b></p>
+                <p align="center" id="red-text" ng-if="!trendingBook.rent"><b>{{"Calculating.."}}</b></p>
+                <button class="btn btn-hover">Details</button>
+              </div>
+            </a>
+          </div>
+      </slick>
+      <div class="left first">
+        <span><img src="app/images/images/grey_arrow_left.png"></span>
+      </div>
+      <div class="right first">
+        <span><img src="app/images/images/grey_arrow_right.png"></span>
+      </div>
+  </div><!-- trending carousel -->
+  <div class="input-group col-md-12" align="center" ng-show="in_loading_recommended">
+      <img class="spinner"  src="app/images/images/spinner.gif" />
+    </div>
+  <div class="container carousel-contain" id="recommendcarousel" ng-hide="in_loading_recommended">
+      <div class="carousel-heading">
+          <h3><b>Recommendation</b></h3>
+      </div>
+      <!-- recommendation carousel -->
+      <slick speed=1000 ng-if="loadedRecommended" responsive="breakpoints" next-arrow=".right.second" prev-arrow=".left.second" infinite="false">
+          <div ng-repeat="recommendedBook in homepageService.recommendedbooks" id="slideitem">
+            <a ui-sref="product({isbn: recommendedBook.isbn13, name: sluggifyTitle(book.title),
+              category: sluggifyTitle(categoryName)})" class="thumbnail carousel-item rentstarts"
+              ng-mouseover="getRent(recommendedBook.isbn13, 'recommended')">
+              <img ng-src="https://s3-ap-southeast-1.amazonaws.com/ireads/images/books/{{recommendedBook.isbn13}}.jpg" alt="a">
+
+              <p class="row-centered margintop" ng-show="recommendedBook.title">{{recommendedBook.title}}</p>
+              <p class="row-centered margintop" ng-show="!recommendedBook.title">Dummy title</p>
+              <div class="onHvShw">
+                <p><b>Rent starts from</b></p>
+                <p align="center" id="red-text" ng-if="recommendedBook.rent"><b>{{recommendedBook.rent | currency:"&#8377 ":0}}</b></p>
+                <p align="center" id="red-text" ng-if="!recommendedBook.rent"><b>{{"Calculating.."}}</b></p>
+                <button class="btn btn-hover">Details</button>
+              </div>
+            </a>
+
+          </div>
+      </slick>
+      <div class="left second">
+        <span><img src="app/images/images/grey_arrow_left.png"></span>
+      </div>
+      <div class="right second">
+        <span><img src="app/images/images/grey_arrow_right.png"></span>
+      </div>
+      <!-- recommendation carousel -->
+  </div><!-- recommendation carousel -->
+  <div class="input-group col-md-12" align="center" ng-show="in_loading_new">
+      <img class="spinner"  src="app/images/images/spinner.gif" />
+    </div>
+  <div class="container carousel-contain marginbottombig" id="newcarousel" ng-hide="in_loading_new">
+      <div class="carousel-heading">
+          <h3><b>New</b></h3>
+      </div>
+      <!-- newcarousel -->
+      <slick speed=1000 ng-if="loadedNew" responsive="breakpoints" next-arrow=".right.third" prev-arrow=".left.third" infinite="false">
+          <div ng-repeat="newBook in homepageService.newbooks" id="slideitem">
+            <a ui-sref="product({isbn: newBook.isbn13, name: sluggifyTitle(book.title),
+              category: sluggifyTitle(categoryName)})" class="thumbnail carousel-item rentstarts"
+              ng-mouseover="getRent(newBook.isbn13, 'new')">
+              <img ng-src="https://s3-ap-southeast-1.amazonaws.com/ireads/images/books/{{newBook.isbn13}}.jpg"
+              alt="a">
+              <p class="row-centered margintop" ng-show="newBook.title">{{newBook.title}}</p>
+              <p class="row-centered margintop" ng-show="!newBook.title">Dummy title</p>
+              <div class="onHvShw">
+                <p><b>Rent starts from</b></p>
+                <p align="center" id="red-text" ng-if="newBook.rent"><b>{{newBook.rent | currency:"&#8377 ":0}}</b></p>
+                <p align="center" id="red-text" ng-if="!newBook.rent"><b>{{"Calculating.."}}</b></p>
+                <button class="btn btn-hover">Details</button>
+              </div>
+            </a>
+          </div>
+      </slick>
+      <div class="left third">
+        <span><img src="app/images/images/grey_arrow_left.png"></span>
+      </div>
+      <div class="right third">
+        <span><img src="app/images/images/grey_arrow_right.png"></span>
+      </div>
+      <!-- newcarousel -->
+  </div><!-- New carousel -->
+
+      <slick responsive="break1" slides-to-show=4 slides-to-scroll=4 id="catbox" class="margintop marginbottombig">
+          <div class="bottomcatbox thumbnail" align="center">
+              <h3 class="marginbottom row-centered">Literature</h3>
+              <div align="center"><a href="#"><img src="app/images/images/literature.png" alt="cat banner" class="img-responsive marginbottom catboximg"></a></div>
+                <div class="btmcatboxlist">
+                  <ul class="list-unstyled">
+                    <li><a href="#">Actions & Adventures</a></li><hr id="line1">
+                    <li><a ui-sref="category.parent({supername: 'non-fiction', superid: 6, parentname: 'literary-collections', parentid: 815})">Literary Collections</a></li><hr id="line1">
+                    <li><a ui-sref="category.parent({supername: 'Fiction', superid: 2, parentname: 'mystery-and-thriller', parentid: 75379})">Mystery & Thriller</a></li><hr id="line1">
+                    <li><a ui-sref="category.parent({supername: 'others-text-books', superid: 8, parentname: 'philosophy', parentid: 4131})">Philosophy</a></li><hr id="line1">
+                    <li><a ui-sref="category.parent({supername: 'Literature', superid: 1, parentname: 'drama', parentid: 108})">Drama</a></li><hr id="line1">
+                    <li><a ui-sref="category.parent({supername: 'Literature', superid: 1})">See more  </a></li>
+                  </ul>
+                </div><!-- btmcatboxlist -->
+          </div><!-- bottomcatbox -->
+          <div class="bottomcatbox thumbnail" align="center">
+              <h3 class="marginbottom row-centered">Non-Fiction</h3>
+              <div align="center"><a href="#"><img src="app/images/images/non-fiction.png" alt="cat banner" class="img-responsive marginbottom catboximg"></a></div>
+                <div class="btmcatboxlist">
+                  <ul class="list-unstyled">
+                    <li><a ui-sref="category.parent({supername: 'non-fiction', superid: 6, parentname: 'biographies-and-autobiographies', parentid: 532})">Biographies & Autobiographies</a></li><hr id="line1">
+                    <li><a ui-sref="category.parent({supername: 'business-&amp;-economics', superid: 7, parentname: 'business-&amp;-economics', parentid: 478})">Business & Economics</a></li><hr id="line1">
+                    <li><a ui-sref="category.parent
+                                        ({supername: 'non-fiction', superid: 6, parentname: 'self-help', parentid: 448})">Self Help</a></li><hr id="line1">
+                    <li><a ui-sref="category.parent
+                                        ({supername: 'non-fiction', superid: 6, parentname: 'history', parentid: 97})">History & Politics</a></li><hr id="line1">
+                    <li><a ui-sref="category.parent
+                                        ({supername: 'Literature', superid: 5, parentname: 'sciencce', parentid: 450})">Science</a></li><hr id="line1">
+                    <li><a ui-sref="category.parent({supername: 'non-fiction', superid: 6})">See More</a></li>
+                  </ul>
+                </div><!-- btmcatboxlist -->
+          </div><!-- bottomcatbox -->
+          <div class="bottomcatbox thumbnail" align="center">
+              <h3 class="marginbottom row-centered">Academics</h3>
+              <div align="center"><a href="#"><img src="app/images/images/academics.png" alt="cat banner" class="img-responsive marginbottom catboximg"></a></div>
+                <div class="btmcatboxlist">
+                  <ul class="list-unstyled">
+                    <li><a ui-sref="category.parent({supername: 'technology-and-engineering', superid: 5})">Engineering</a></li><hr id="line1">
+                    <li><a ui-sref="category.parent({supername: 'others-text-books', superid: 8, parentname: 'medical', parentid: 455})">Medical</a></li><hr id="line1">
+                    <li><a ui-sref="category.parent({supername: 'Literature', superid: 5, parentname: 'computers', parentid: 2})">Computers</a></li><hr id="line1">
+                    <li><a ui-sref="category.parent({supername: 'board-&amp;-exams-prep', superid: 4})">Board Exam</a></li><hr id="line1">
+                    <li><a ui-sref="category.parent({supername: 'Board-&amp;-exam-prep', superid: 4, parentname: 'competitive-exams', parentid: 34})">Competitive Exams</a></li><hr id="line1">
+                    <li><a ui-sref="category.parent({supername: 'others-text-books', superid: 8,parentname: 'academics-&amp;-reference', parentid: 3})">See More</a></li>
+                  </ul>
+                </div><!-- btmcatboxlist -->
+          </div><!-- bottomcatbox -->
+          <div class="bottomcatbox thumbnail" align="center">
+              <h3 class="marginbottom row-centered">Children & Teens</h3>
+              <div align="center"><a href="#"><img src="app/images/images/children.png" alt="cat banner" class="img-responsive marginbottom catboximg"></a></div>
+                <div class="btmcatboxlist">
+                  <ul class="list-unstyled">
+                    <li><a href="#">Actions & Adventures</a></li><hr id="line1">
+                    <li><a href="#">Fantasy</a></li><hr id="line1">
+                    <li><a ui-sref="category.parent
+                                        ({supername: 'Fiction', superid: 2, parentname: 'romance', parentid: 69223})">Romance</a></li><hr id="line1">
+                    <li><a ui-sref="category.parent
+                                        ({supername: 'Children-&amp;-teens', superid: 3, parentname: 'comic-&amp;-graphic-novels', parentid: 92})">Graphic Novels</a></li><hr id="line1">
+                    <li><a ui-sref="category.parent
+                                        ({supername: 'others-text-books', superid: 8, parentname: 'arts', parentid: 87})">Arts</a></li><hr id="line1">
+                    <li><a ui-sref="category.parent({supername: 'Childrens-&amp;-teens', superid: 3})">See More</a></li>
+                  </ul>
+                </div><!-- btmcatboxlist -->
+          </div><!-- bottomcatbox -->
+      </slick>
+      <div class="carousel-contain marginbottombig hidden-xs hidden-sm">
+        <div class="absContPlay" align="center">
+        <button data-toggle="modal" data-target=".ytContMdl" class="play-bttn"><span class="glyphicon glyphicon-play-circle"></span></button>
+        </div>
+        <div class="modal fade ytContMdl" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+           <div class="modal-dialog modal-lg">
+             <div class="modal-content">
+                 <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title colorIR" id=""><b>Indiareads : #IndiaKaLibrary</b></h4>
+                </div>
+                <div class="modal-body">
+                  <iframe id="player" width="100%" height="400" src="https://www.youtube.com/embed/3dgZhicgsJk" frameborder="0" allowfullscreen></iframe>
+                </div>
+             </div>s
+           </div>
+        </div>
+        <slick class="marginbottom videoslide" next-arrow=".right.video" prev-arrow=".left.video">
+          <div>
+            <img src="app/images/images/banner-1.png" alt="" class="img-responsive">
+          </div>
+          <div>
+            <img src="app/images/images/banner-2.png" alt="" class="img-responsive">
+          </div>
+          <div>
+            <img src="app/images/images/banner-3.png" alt="" class="img-responsive">
+          </div>
+          <div>
+            <img src="app/images/images/banner-4.png" alt="" class="img-responsive">
+          </div>
+          <div>
+            <img src="app/images/images/banner-5.png" alt="" class="img-responsive">
+          </div>
+          <div>
+            <img src="app/images/images/banner-6.png" alt="" class="img-responsive">
+          </div>
+        </slick>
+        <div class="left video">
+          <span><img src="app/images/images/left_arrow_white.png"></span>
+        </div>
+        <div class="right video">
+          <span><img src="app/images/images/right_arrow_white.png"></span>
+        </div>
+      </div>
+      <div class="carousel-contain marginbottombig" style="background: purple; color:white; height:400px;">
+        <slick class="marginbottom testimonial" dots="true" autoplay="true" speed="1000">
+          <div align="center" class="marginbottom">
+              <h3 class="marginbottombig">Customer Testimonials</h3>
+              <img class="marginbottombig" src="app/images/images/twitter-white-icon.png" alt="" width=30 height=30>
+              <p width="1000" class="marginbottombig">@_IndiaReads Saved lot of money.
+                Thanks @_IndiaReads is awesome !</p>
+              <img class="circle-img marginbottom" height="75" width="75" src="https://pbs.twimg.com/profile_images/651061182824972288/wlsN0VxD_bigger.jpg" alt="">
+                <p class="marginbottom">Anshul Divakar</p>
+            </div>
+          <div align="center" class="marginbottom">
+              <h3 class="marginbottombig">Customer Testimonials</h3>
+              <img class="marginbottombig" src="app/images/images/twitter-white-icon.png" alt="" width=30 height=30>
+              <p width="1000" class="marginbottombig">Reliving #Childhood memories. ThankYou @IndiaReads for this amazing #Books portal.</p>
+              <img class="circle-img marginbottom" height="75" width="75" src="https://pbs.twimg.com/profile_images/2325103839/Photo0116_bigger.jpg" alt="">
+              <p class="marginbottom">Ravi Kumar Singh</p>
+          </div>
+          <div align="center" class="marginbottom">
+              <h3 class="marginbottombig">Customer Testimonials</h3>
+              <img class="marginbottombig" src="app/images/images/twitter-white-icon.png" alt="" width=30 height=30>
+              <p width="1000" class="marginbottombig">#Rent #Read #Return. Brilliant concept. Digital library for book lovers. #Awesomeness.</p>
+              <img class="circle-img marginbottom" height="75" width="75" src="https://pbs.twimg.com/profile_images/658656071884472320/u2929BH9_bigger.jpg" alt="">
+                <p class="marginbottom">Neha Dwivedi</p>
+          </div>
+        </slick>
+      </div>
+      <div id="carousel-media" class="carousel slide hidden-xs hidden-sm marginbottombig" data-ride="carousel">
+        <div align="center" class="marginbottombig">
+          <img src="app/images/images/invertedcomma_quotes.png" alt="quotes">
+        </div>
+        <div class="carousel-inner media" role="listbox">
+          <div class="item white-background active marginbottombig">
+            <p align="center">"​ ​With services in 500 plus cities, currently IndiaReads offers over 1.8 lac titles across genres like college textbooks, competitive exams, fiction, nonfiction, self-help, technology, management among others. "</p>
+            <p align="right"><a target="_blank" href="http://yourstory.com/2015/05/indiareads/">Read More</a></p>
+          </div>
+          <div class="item white-background marginbottombig">
+            <p align="center">" For want of a book, a library was found. "</p>
+            <p align="right"><a target="_blank" href="http://www.thehindu.com/news/cities/chennai/for-want-of-a-book-a-library-was-found/article4302485.ece">Read More</a></p>
+          </div>
+          <div class="item white-background marginbottombig">
+            <p align="center">"​ IndiaReads.com: Designs & upgrades libraries for corporate houses​. "</p>
+            <p align="right"><a target="_blank" href="http://articles.economictimes.indiatimes.com/2012-10-18/news/34555595_1_book-market-library-corporate-houses">Read More</a></p>
+          </div>
+          <div class="item white-background marginbottombig">
+            <p align="center">​"​ Online library is here to whet your mind's appetite​. "​</p>
+            <p align="right"><a target="_blank" href="http://www.hindustantimes.com/indore/online-library-is-here-to-whet-your-mind-s-appetite/story-YdaSR6XvwDqdEzoTRMK9nM.html">Read More</a></p>
+          </div>
+          <div class="item white-background marginbottombig">
+            <p align="center">​" IndiaReads.com aims to build an affordable reading house​. "</p>
+            <p align="right"><a target="_blank" href="http://techcircle.vccircle.com/2015/05/22/exclusive-online-platform-to-rent-books-indiareads-claims-160k-users-in-talks-to-raise-2-5m/">Read More</a></p>
+          </div>
+          <div class="item white-background marginbottombig">
+            <p align="center">​​"​ IndiaReads: An Online Space Which Provides Books on Rent​. "​</p>
+            <p align="right"><a target="_blank" href="http://www.iamwire.com/2015/10/indiareads-an-online-space-which-provides-books-on-rent/124593">Read More</a></p>
+          </div>
+        </div>
+        <ol class="carousel-indicators indicator-step media-step">
+          <li data-target="#carousel-media" data-slide-to="0" class="li1">
+            <img src="app/images/images/your-story-bw.jpg" alt="" onMouseOver=src="app/images/images/your-story.jpg" onMouseOut=src="app/images/images/your-story-bw.jpg">
+          </li>
+          <li data-target="#carousel-media" data-slide-to="1" class="li2">
+            <img src="app/images/images/the-hindu-bw.jpg" alt="" onMouseOver=src="app/images/images/the-hindu.jpg" onMouseOut=src="app/images/images/the-hindu-bw.jpg">
+          </li>
+          <li data-target="#carousel-media" data-slide-to="2" class="li3">
+            <img src="app/images/images/the-economic-times-bw.jpg" alt="" onMouseOver=src="app/images/images/the-economic-times.jpg" onMouseOut=src="app/images/images/the-economic-times-bw.jpg">
+          </li>
+          <li data-target="#carousel-media" data-slide-to="3" class="li4">
+            <img src="app/images/images/hindustan-times-bw.jpg" alt="" onMouseOver=src="app/images/images/hindustan-times.jpg" onMouseOut=src="app/images/images/hindustan-times-bw.jpg">
+          </li>
+          <li data-target="#carousel-media" data-slide-to="4" class="li5">
+            <img src="app/images/images/vcc-circle-bw.jpg" alt="" onMouseOver=src="app/images/images/vcc-circle.jpg" onMouseOut=src="app/images/images/vcc-circle-bw.jpg">
+          </li>
+          <li data-target="#carousel-media" data-slide-to="5" class="li6">
+            <img src="app/images/images/i-am-wire-bw.jpg" alt="" onMouseOver=src="app/images/images/i-am-wire.jpg" onMouseOut=src="app/images/images/i-am-wire-bw.jpg">
+          </li>
+        </ol>
+      </div>
+</div><!-- homecontent -->
+<script>
+  $(function(){
+    $('.carousel').carousel({
+          interval: 4000
+        });
+    });
+      $("button.close").click(function(){
+          $("#player").attr('src','');
+          $("#player").attr("src","https://www.youtube.com/embed/3dgZhicgsJk");
+      });
+</script>

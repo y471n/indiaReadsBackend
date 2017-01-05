@@ -1,0 +1,22 @@
+<div class="input-group col-md-12" align="center" ng-show="in_loading">
+	<img class="spinner"  src="app/images/images/spinner.gif" />
+</div>
+<div class="row" ng-hide="in_loading">
+	<div class="col-md-6 col-sm-6 col-xs-12 well white-background" ng-repeat="book in bookshelfService.historybooks">
+		<div class="row">
+			<div class="col-100">
+				<a href="#">
+					<img ng-src="https://s3-ap-southeast-1.amazonaws.com/ireads/images/books/{{book.isbn13}}.jpg" fallback-src="app/images/images/book.jpg" alt="book image" class="img-responsive">
+				</a>
+			</div><!-- col100 -->
+			<div class="col-220">
+				<h4 id="nameofbook">{{book.title}}</h4>
+				<h5 id="nameofauthor">by {{book.author1}}</h5>
+				<h5 id="mrp">MRP: <strike>Rs.397</strike></h5>
+				<h5 id="rent">You rented this book for Rs. 89</h5>
+				<h5 id="rentedperiod">Rented period of August 1st,2015 to September 1st,2015</h5>
+				<h5 id="red-text">You saved 80% with IndiaReads.com rentals</h5>
+			</div><!-- col220 -->
+		</div><!-- row -->
+	</div><!-- col-md-6 -->
+</div><!-- row -->

@@ -1,0 +1,45 @@
+<div role="tabpanel" class="tab-pane" id="OrderSummCO">
+    <div class="row">
+
+        <div align="center" ng-show="in_loading" class="col-lg-7">
+
+            <img class="spinner"  src="app/images/images/spinner.gif" />
+
+        </div>
+
+        <div class="col-lg-7" ng-hide="in_loading">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4>Order Summary</h4>
+                </div>
+                <div class="panel-body">
+                    <ul class="list-item oslist">
+                    <li class="list-group-item" ng-repeat="book in books"><span class="pull-left">{{book.book_name}}</span><span class="pull-right">Rs. {{book.initial_payable}}</span><p class="clear"></p></li>
+                    
+                    <!-- <li class="list-group-item"><span class="pull-left">Sub Total (+) </span><span class="pull-right">Rs. {{totalPrice}}</span><p class="clear"></p></li> -->
+                    <li class="list-group-item"><span class="pull-left">Shipping (+) </span><span class="pull-right">Rs. {{shippingCharges()}}</span><p class="clear"></p></li>
+                    <li class="list-group-item"><span class="pull-left">COD (+) </span><span class="pull-right">Rs. {{codCharges()}}</span><p class="clear"></p></li>
+                    <li class="list-group-item"><span class="pull-left">Discount (-) </span><span class="pull-right">Rs. 0</span><p class="clear"></p></li>
+                    <li class="list-group-item"><span class="pull-left">Store credit(-) </span><span class="pull-right">Rs. {{store_credits}}</span><p class="clear"></p></li>
+                    <!-- <li class="list-group-item"><span class="pull-left">Bonus Store credit(-) </span><span class="pull-right">Rs. 0</span><p class="clear"></p></li> -->
+                    </ul>
+                </div>
+                <div class="panel-footer">
+                    <li class="list-group-item"><h4><span class="tyrl">Total Payable:</span><span class="pull-right">Rs. {{finalAmount}}</span></h4></li>
+                    <h4>Payment mode : {{paymentModeText()}}</h4>
+                    <p class=""><button class="btn btn-IR btn-block" ng-click="placeOrder()">{{makePaymentText()}}</button></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="well">
+                <p><b>{{deliveryAddress.fullName}}</b></p>
+                <p>{{deliveryAddress.addressLine1}}</p>
+                <p>{{deliveryAddress.addressLine2}}</p>
+                <p>{{deliveryAddress.state}}</p>
+                <p>{{deliveryAddress.city}} - {{deliveryAddress.pincode}}</p>
+                <p>Ph: {{deliveryAddress.phone}}</p>
+            </div>
+        </div>
+    </div>
+</div>

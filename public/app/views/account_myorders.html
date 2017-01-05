@@ -1,0 +1,98 @@
+<div class="modal fade in" id="payInfoModal" tabindex="-1" role="dialog" aria-labelledby="payInfoModal">
+   <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+         <div class="modal-header payInfoPopHeader bgDark">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" style="color:white;">x</span></button>
+            <h4 class="modal-title" id="myModalLabel"><b>PAYMENT INFORMATION</b></h4>
+         </div>
+         <div class="modal-body payInfoPopBody">
+            <div class="payInfoPopDiv">
+               <div class="newDark"><h4>Charges</h4></div>
+               <ul class="list-group payInfoPopul">
+                  <li class="list-group-item payInfoPopList">
+                     <span class="rentDetailsLeftCol pull-left">Initial Payable</span>
+                     <span class="pull-right">Rs. 100</span>
+                     <p class="clear"></p>
+                  </li>
+                  <li class="list-group-item payInfoPopList">
+                     <span class="rentDetailsLeftCol pull-left">Shipping Charges</span>
+                     <span class="pull-right">Rs. 100</span>
+                     <p class="clear"></p>
+                  </li>
+                  <li class="list-group-item payInfoPopList">
+                     <span class="rentDetailsLeftCol pull-left">Cash Handling Charges</span>
+                     <span class="pull-right">Rs. 100</span>
+                     <p class="clear"></p>
+                  </li>
+                  <li class="list-group-item payInfoPopList colorIR"><b>
+                     <span class="rentDetailsLeftCol pull-left">Total Charges</span>
+                     <span class="pull-right">Rs. 300</span>
+                     </b><p class="clear"></p>
+                  </li>
+               </ul>
+            </div>
+            <div class="payInfoPopDiv">
+               <div class="newDark"><h4>Payment</h4></div>
+               <ul class="list-group payInfoPopul">
+                  <li class="list-group-item payInfoPopList">
+                     <span class="rentDetailsLeftCol pull-left">Store Credit</span>
+                     <span class="pull-right">Rs. 150</span>
+                     <p class="clear"></p>
+                  </li>
+                  <li class="list-group-item payInfoPopList">
+                     <span class="rentDetailsLeftCol pull-left">Additional Payment</span>
+                     <span class="pull-right">Rs. 150</span>
+                     <p class="clear"></p>
+                  </li>
+                  <li class="list-group-item payInfoPopList"></li>
+                  <li class="list-group-item payInfoPopList colorIR"><b>
+                     <span class="rentDetailsLeftCol pull-left">Total Payment</span>
+                     <span class="pull-right">Rs. 300</span>
+                     </b><p class="clear"></p>
+                  </li>
+               </ul>
+            </div>
+            <div class="clear"></div>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="input-group col-md-12" align="center" ng-show="in_loading">
+   <img class="spinner"  src="app/images/images/spinner.gif" />
+</div>
+<div class="orders" ng-repeat="order in myOrdersService.details" ng-hide="in_loading">
+   <div class="well well-sm margintop ng-scope">
+      <p id="orderid">ORDER ID: {{order.details[0][0]["bookshelf_order_id"]}}</p>
+      <p id="orderplaceddate">ORDER PLACED: AUGUST 28th, 2015</p>
+   </div><!-- well -->
+   <div class="row margintop ng-scope">
+      <div class="col-md-3 col-sm-3 hidden-xs">
+         <img src="app/images/images/book.jpg" alt="book image" class="img-responsive">
+      </div><!-- col-md-3 -->
+      <div class="col-md-5 col-sm-5 col-xs-7 rightborder">
+         <h4 id="nameofbook">{{order.bookname}}(Paperback)</h4>
+         <h5 id="nameofauthor">by {{order.author}}</h5>
+         <h5 id="initialpayable">Initial Payable: Rs.{{order.details[0][0]["init_pay"]}}</h5>
+         <button class="btn btn-link" data-toggle="modal" data-target="#payInfoModal">Payment Information</button>
+         <h5 id="paymentmode">Payment Mode: {{order.paymentmode}}</h5>
+         <h5 id="green-text"><b>To be delivered by {{order.deliveryby}}</b></h5>
+         <div class="row ">
+            <div class="col-md-3 col-sm-4 col-xs-4">Ships to: </div>
+            <div class="col-md-6 col-sm-8 col-xs-8">
+               <ul class="list-unstyled">
+                  <li>Raman Kumar</li>
+                  <li>Sector-55, E-41</li>
+                  <li>noida -200400, UttarPradesh</li>
+               </ul>
+            </div>
+            <div class="col-md-3"></div>
+         </div>
+      </div><!-- col-md-5 -->
+      <div class="col-md-4 col-sm-4 col-xs-5 ">
+         <h3>Refund Status</h3>
+         <h5>Refund Status: On Hold</h5>
+         <h5>Refund Amount: Rs. 89</h5>
+         <h5>Refund Mode: Store Credits</h5>
+      </div><!-- col-md-4 -->
+   </div><!-- order-card -->
+</div>

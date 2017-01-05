@@ -1,0 +1,77 @@
+<div class="container contactMainContainer">
+		<div class="row bgDark row-centered marginbottom">
+			<h4>Contact Us</h4>
+		</div>
+		<div class="contactTextRow row-centered marginbottom">
+			<p>Do you have any questions? Please fill out the form below.</p>
+			<p>We try to respond within 1-2 hours during normal business hours. (Mon to Sat -10 am)</p>
+		</div>
+		<div class="margintop">
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 margintop">
+				<address>
+					<strong id="red-text">Office Address</strong><br>
+					E-26, First Floor,<br>
+					Sector-8,<br>
+					Noida-201301<br>
+					Uttar Pradesh
+				</address>
+				<address>
+					<strong id="red-text">Contact Details</strong><br>
+					<abbr title="Phone"><span class="glyphicon glyphicon-phone-alt"></span> Ph:</abbr> 1800-103-7323<br>
+					<abbr title="Phone"><span class="glyphicon glyphicon-earphone"></span> Ph:</abbr> (0120)-2424233<br>
+					<abbr title="Phone"><span class="glyphicon glyphicon-envelope"></span> Mail:</abbr><a href="mailto:#"> customercare@indiareads.com</a>
+
+				</address>
+
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 margintop">
+				<form action="">
+					<div class="form-group input-group col-lg-5 pull-left">
+						<input type="text" class="form-control" placeholder="Enter your name">
+						<span class="input-group-addon colorIR">*</span>
+					</div>
+					<div class="form-group input-group col-lg-5 pull-right"><input type="text" class="form-control" placeholder="Enter your email"><span class="input-group-addon colorIR">*</span></div><div class="clear"></div>
+					<div class="form-group input-group col-lg-5 pull-left"><input type="text" class="form-control" placeholder="Enter your phone number"><span class="input-group-addon colorIR">*</span></div>
+					<div class="form-group input-group col-lg-5 pull-right">
+						<select class="form-control" name="type">
+							<option value="unselected">- Select -</option>
+							<option value="Library Membership/Renting Books">How Rental Works!</option>
+							<option value="Order Related Query">Order Follow-Up</option>
+							<option value="Technical Issues">Return Follow-Up</option>
+							<option value="Corporate Library Services">Corporate Library</option>
+							<option value="Add this Book to Library">Technical Issue</option>
+							<option value="Other">Others</option>
+						</select><span class="input-group-addon colorIR">*</span>
+					</div><div class="clear"></div>
+					<div class="form-group">
+						<textarea class="form-control" rows="3"></textarea>
+					</div>
+					<button class="btn button-style button-width" style="float:right;">Submit</button>
+				</form>
+			</div>
+		</div>
+		<div class="mapCont">
+			<div id="googleMap"></div>
+			<a class="btn btn-link mapLargerCon colorvvs" href="https://www.google.co.in/maps/@28.5935942,77.326699,15z" target="_blank">View Larger Map</a>
+		</div>
+	</div>
+<script src="http://maps.googleapis.com/maps/api/js"></script>	
+<script>
+	function initialize() {
+		var myLatLng = {lat: -28.595534, lng: 77.324545};
+  var mapProp = {
+    center:new google.maps.LatLng(28.595534, 77.324545),
+    zoom:14,
+    mapTypeId:google.maps.MapTypeId.ROADMAP
+  };
+  var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+  var marker = new google.maps.Marker({
+    position: new google.maps.LatLng(28.595534, 77.324545),
+    map: map,
+    title: 'indiareads',
+    label: 'indiareads'
+  })
+  
+}
+google.maps.event.addDomListener(window, 'load', initialize)
+</script>

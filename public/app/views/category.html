@@ -1,0 +1,104 @@
+<div id="catlist">
+	<ol class="breadcrumb">
+	  <li><a href="#">Home</a></li>
+	  <li><a href="#">Categories</a></li>
+	  <li ng-if="supername">{{unSluggifyTitle(supername)}}</li>
+	  <li ng-if="parentname" class="active">{{unSluggifyTitle(parentname)}}</li>
+	</ol>
+	<div class="row">
+		<!-- {{catListService.categories}} -->
+		<div class="col-md-3 hidden-sm hidden-xs">
+			<div class="sidebar-list">
+			    <div class="panel-group" id="accordion">
+			        <div class="panel panel-default" ng-repeat="category in catListService.categories">
+			            <div class="panel-heading active">
+			                <h4 class="panel-title">
+			                    <a data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne">
+			                    	{{ toTitleCase(category.category) }}
+			                    </a>	
+			                </h4>
+			            </div><!-- panel-heading -->
+			            <!-- {{category.subCategory}} -->
+			            <div id="collapseOne" class="panel-collapse collapse">
+			                <div class="panel-body">
+			                    <ul class="list-unstyled active">
+			                      <li class="cat-item active" ng-repeat="subcat in category.subCategory">
+			                      	<a href="#">{{ toTitleCase(subcat.category) }}</a>
+			                      </li>
+			                     </ul>
+			                </div><!-- panel-body -->
+			            </div><!-- collapseOne -->
+			        </div><!-- panel -->
+			    </div><!-- panel-group -->
+			</div><!-- sidebar-list  -->                                                                
+		</div><!-- col-md-3 -->
+		<div class="col-md-9">
+			<div class="listing-banner">
+				<div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+				</div>
+				<div class="col-md-8 col-lg-8 col-sm-8 col-xs-8">
+					<div class="carousel-contain listingslider">
+						<slick infinite="true" responsive="break2" slides-to-show=4 slides-to-scroll=4  next-arrow=".right.first" prev-arrow=".left.first" autoplay="true">
+							<div id="catslider">
+								<a href="#">
+									<img src="app/images/images/book.jpg" alt="">
+									<p>Deals Deals Deals</p>
+								</a>
+							</div>
+							<div id="catslider">
+								<a href="#">
+									<img src="app/images/images/book.jpg" alt="">
+									<p>Deals Deals Deals</p>
+								</a>
+							</div>
+							<div id="catslider">
+								<a href="#">
+									<img src="app/images/images/book.jpg" alt="">
+									<p>Deals Deals Deals</p>
+								</a>
+							</div>
+							<div id="catslider">
+								<a href="#">
+									<img src="app/images/images/book.jpg" alt="">
+									<p>Deals Deals Deals</p>
+								</a>
+							</div>
+						</slick>
+
+					      <div class="right first hidden-lg hidden-md" style="right:0px; top:100px">
+					        <span><img src="app/images/images/grey_arrow_right.png"></span>
+					      </div>
+					</div>
+				</div>
+			</div>
+			<div class="sub-header well margintop">
+			   	<div class="row row-centered">
+			       <!-- <div class="pull-left" id="search-result-header"><p>814 results for AIPMT</p></div> -->
+			       <div class="pull-right">  
+			       		<span  style="float:right;">
+					        <input type="radio"> Exclude out of Stock
+					    </span>
+			       </div><!-- col-md-4 -->
+			       <div class="clear"></div>
+			 	</div><!-- row-centered -->
+			</div><!-- sub-header -->
+			<div class="row" infinite-scroll="loadMore()" infinite-scroll-distance="1">
+
+			  	<div class="catListNewItem" ng-repeat="book in catListService.books">
+				    <a ui-sref="product({isbn: book.isbn13, name: sluggifyTitle(book.title), 
+				    	category: sluggifyTitle(categoryName)})" class="thumbnail">
+				      <img 
+				     ng-src="https://s3-ap-southeast-1.amazonaws.com/ireads/images/books/{{book.isbn13}}.jpg"
+				     fallback-src="app/images/book.jpg"
+				     alt="{{book.title}}" class="img-responsive">
+				      	<p class="row-centered" ng-show="book.title">{{book.title}}</p>
+              			<p class="row-centered" ng-show="!book.title">Dummy title</p>
+				    </a>
+			  	</div>  	
+			</div>	
+			<div>
+			    <button class="btn btn-block colorIR" href="#">Load More</button>
+			</div>
+		</div><!-- col-md-9 -->
+	</div>
+</div>

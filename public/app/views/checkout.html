@@ -1,0 +1,42 @@
+<div>
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs coside-menu col-lg-3 col-md-3 col-sm-12 col-xs-12" role="tablist">
+    <li role="presentation" class="col-lg-12 col-md-12 col-sm-3 col-xs-3" ui-sref-active="active">
+    	<a role="tab" data-toggle="tab" ui-sref="checkout.login">
+      	<span class="coNavImg">
+          <img src="app/images/images/co1nav.png" alt="">
+        </span>
+        <span class="textHide hidden-xs hidden-sm"> Login to Checkout Faster</span>
+      </a>
+    </li>
+    <li role="presentation" class="col-lg-12 col-md-12 col-sm-3 col-xs-3" ui-sref-active="active">
+    	<a ui-sref="checkout.delivery" aria-controls="delAddCO" role="tab" data-toggle="tab">
+    	 <span class="coNavImg">
+          <img src="app/images/images/co2nav.png" alt="">
+        </span>
+        <span class="textHide hidden-xs hidden-sm"> Delivery Address</span>
+      </a>
+    </li>
+    <li role="presentation" class="col-lg-12 col-md-12 col-sm-3 col-xs-3" ui-sref-active="active">
+    	<a role="tab" data-toggle="tab" ui-sref="checkout.payment">
+    	 <span class="coNavImg">
+          <img src="app/images/images/co3nav.png" alt="">
+        </span>
+        <span class="textHide hidden-xs hidden-sm"> Payment Method</span>
+      </a>
+    </li>
+    <li role="presentation" class="col-lg-12 col-md-12 col-sm-3 col-xs-3" ui-sref-active="active">
+    	<a role="tab" data-toggle="tab" ui-sref="checkout.summary">
+      	<span class="coNavImg">
+          <img src="app/images/images/co4nav.png" alt="">
+        </span>
+        <span class="textHide hidden-xs hidden-sm"> Order Summary</span>
+      </a>
+    </li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content col-lg-9 col-md-9 col-md-12 col-xs-12 well white-background"> 
+    <div ui-view=""></div>
+  </div>
+</div

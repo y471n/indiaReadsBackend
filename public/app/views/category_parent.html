@@ -1,0 +1,116 @@
+<ol class="breadcrumb">
+  <li><a href="#">Home</a></li>
+  <li><a href="#">Categories</a></li>
+  <li ng-if="supername">{{unSluggifyTitle(supername)}}</li>
+  <li ng-if="parentname" class="active">{{unSluggifyTitle(parentname)}}</li>
+</ol>
+
+<div class="row">
+	<div class="col-md-3 hidden-sm hidden-xs listingside">
+		<div class="input-group col-md-12" align="center" ng-show="in_loading_side">
+			<img class="spinner"  src="app/images/images/spinner.gif" />
+		</div>
+		<div class="sidebar-list" ng-if="catListService.categories" ng-hide="in_loading_side">
+		    <div class="panel-group" id="accordion">
+		        <div class="panel panel-default" ng-repeat="category in catListService.categories">
+		            <div class="panel-heading" ng-click="select(category)" ng-class="{active: isActive(category)}">
+		                <h4 class="panel-title">
+		                    <a data-toggle="collapse" data-parent="#accordion"
+		                    data-target="#category-{{category.catID1}}"
+		                    ng-click="loadCat1Books(category.catID1)">
+		                    	{{ toTitleCase(category.category)}}
+		                    </a>
+		                </h4>
+		            </div><!-- panel-heading -->
+		            <!-- {{category.subCategory}} -->
+		            <div id="category-{{category.catID1}}" class="panel-collapse collapse" ng-show="showSubCats(category.subCategory)">
+		                <div class="panel-body">
+		                    <ul class="list-unstyled active">
+		                      <li class="cat-item" ng-repeat="subcat in category.subCategory" ng-click="select(subcat)" ng-class="{active: isActive(subcat)}">
+		                      	<a href="#" ng-click="loadCat2Books(subcat.catID2)">{{ toTitleCase(subcat.category) }}</a>
+		                      </li>
+		                     </ul>
+		                </div><!-- panel-body -->
+		            </div><!-- collapseOne -->
+		        </div><!-- panel -->
+		    </div><!-- panel-group -->
+		</div><!-- sidebar-list  -->
+
+		<div class="sidebar-list" ng-if="!catListService.categories">
+			<div class="spinner" style="padding:200px!important;">
+				<span us-spinner="{radius:20, width:8, length: 16}"></span>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-9 listingrow">
+		<div class="row listing-banner"	 style="background: #eee !important;">
+			<div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+			</div>
+			<div class="col-md-8 col-lg-8 col-sm-8 col-xs-8">
+				<!-- <div class="carousel-contain listingslider">
+					<slick responsive="break2" slides-to-show=4 slides-to-scroll=4  next-arrow=".right.first" prev-arrow=".left.first" autoplay="true" id="categoryslider" inifinite="false">
+						<div id="catslider">
+							<a href="#">
+								<img src="app/images/images/book.jpg" alt="">
+								<p>Deals Deals Deals</p>
+							</a>
+						</div>
+						<div id="catslider">
+							<a href="#">
+								<img src="app/images/images/book.jpg" alt="">
+								<p>Deals Deals Deals</p>
+							</a>
+						</div>
+						<div id="catslider">
+							<a href="#">
+								<img src="app/images/images/book.jpg" alt="">
+								<p>Deals Deals Deals</p>
+							</a>
+						</div>
+						<div id="catslider">
+							<a href="#">
+								<img src="app/images/images/book.jpg" alt="">
+								<p>Deals Deals Deals</p>
+							</a>
+						</div>
+					</slick>
+
+				      <div class="right first hidden-lg hidden-md" style="right:-30px; top:50px">
+				        <span><img src="app/images/images/grey_arrow_right.png"></span>
+				      </div>
+				</div> -->
+			</div>
+		</div>
+		<div class="sub-header well well-sm margintop">
+		   	<div class="row-centered">
+		       <!-- <div class="pull-left" id="search-result-header"><p>814 results for AIPMT</p></div> -->
+		       <div class="pull-right">
+		       		<span  style="float:right;">
+
+				<input type="checkbox" name="" id="" ng-model="out_of_stock" ng-click="excludeOut()"> Exclude out of Stock
+				    </span>
+		       </div><!-- col-md-4 -->
+		       <div class="clear"></div>
+		 	</div><!-- row-centered -->
+		</div><!-- sub-header -->
+		<div class="input-group col-md-12" align="center" ng-show="in_loading">
+			<img class="spinner"  src="app/images/images/spinner.gif" />
+		</div>
+		<div class="row" infinite-scroll="loadMore()" infinite-scroll-distance="1" ng-hide="in_loading">
+		  	<div class="catListNewItem" ng-repeat="book in books">
+			    <a ui-sref="product({isbn: book.ISBN13, name: sluggifyTitle(book.title),
+			    	category: sluggifyTitle(categoryName)})" class="thumbnail">
+			      <img
+			     ng-src="https://s3-ap-southeast-1.amazonaws.com/ireads/images/books/{{book.ISBN13}}.jpg"
+			     fallback-src="app/images/book.jpg"
+			     alt="{{book.title}}" class="img-responsive">
+			      	<p class="row-centered" ng-show="book.title">{{book.title}}</p>
+          			<p class="row-centered" ng-show="!book.title">Dummy title</p>
+			    </a>
+		  	</div>
+		</div>
+		<div>
+		    <button class="btn btn-block colorIR" href="#">Load More</button>
+		</div>
+	</div>
+</div>

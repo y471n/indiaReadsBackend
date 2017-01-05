@@ -1,0 +1,66 @@
+<!-- <div class="col-lg-3 col-md-3 col-sm-3 hidden-xs">
+	<div class="leftySP">
+		<div class="mainCatCP">Filter by:</div>
+		<ul class="subcatlistCP list-group">
+			<li class="subcatitemCP list-group-item"><input type="checkbox" name="catSP" id="">Fiction</li>
+			<li class="subcatitemCP list-group-item"><input type="checkbox" name="catSP" id="">Biography</li>
+			<li class="subcatitemCP list-group-item"><input type="checkbox" name="catSP" id="">History</li>
+			<li class="subcatitemCP list-group-item"><input type="checkbox" name="catSP" id="">Drama</li>
+			<li class="subcatitemCP list-group-item"><input type="checkbox" name="catSP" id="">Poetry</li>
+			<li class="subcatitemCP list-group-item"><input type="checkbox" name="catSP" id="">Classics</li>
+			<li class="subcatitemCP list-group-item"><input type="checkbox" name="catSP" id="">General</li>
+		</ul>
+	</div>
+</div> -->
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 searchRight">
+	<div class="bgDark">
+		<h4 class="subHeaderh4">
+			<div class="pull-left">{{numberofbooks}} results for "{{search_query}}"</div>
+			<div class="pull-right">
+				<span>	
+			        <input type="checkbox"> Exclude Out of Stock
+			    </span>
+			</div>
+			<div class="clear"></div>
+		</h4>
+	</div>
+	<div class="input-group col-md-12" align="center" ng-show="in_loading">
+		<img class="spinner"  src="app/images/images/spinner.gif" />
+	</div>
+	<div class="searchItemCont" ng-hide="in_loading">
+		<ul class="searchItemList list-group">
+			<li class="slistItem list-group-item" ng-repeat="book in searchService.books">
+				<div class="colSImg"><a ui-sref="product({isbn: book.ISBN13, name: sluggifyTitle(book.title), 
+				    	category: sluggifyTitle(book.category)})" class="slistImg"><img 
+				     ng-src="https://s3-ap-southeast-1.amazonaws.com/ireads/images/books/{{book.ISBN13}}.jpg"
+				     fallback-src="app/images/book.jpg"
+				     alt="{{book.title}}" class="img-responsive"></a>
+				 </div>
+				<div class="bookInfoContSP ">
+					<div class="sItemBkTtl"><a ui-sref="product({isbn: book.ISBN13, name: sluggifyTitle(book.title), 
+				    	category: sluggifyTitle(book.category)})" >{{book.title}}</a></div>
+					<div class="col-lg-12 col-md-12 col-sm-12 sol-xs-12"><p class="bookauthSP">{{book.contributor_name1}}</p></div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+					<p ng-if="book.details.rent">MRP: <del>{{book.details.rent.mrp}} </del></p>
+					<p class="colorIR" ng-if="book.details.rent">Rent starts from Rs. {{book.details.rent.starts}}</p>
+						<button type="button" class="btn btn-IR" ui-sref="product({isbn: book.ISBN13, name: sluggifyTitle(book.title), 
+				    	category: sluggifyTitle(book.category)})"> RENT NOW</button>
+					</div>
+					<div class="bkinfoExt col-lg-6 col-md-6 col-sm-6 hidden-xs">
+						<p>Text Language : <span>{{book.details.textLanguage}}</span></p>
+						<p>Product Form : <span>{{book.details.productForm}}</span></p>
+						<p>Publisher Name : <span>{{book.details.publisherName}}</span></p>
+						<!--<p>Publication Place : <span>New Delhi</span></p>-->
+						<p>Publishing Status : <span>Active</span></p>
+					</div>
+				</div>
+				<a ui-sref="product({isbn: book.ISBN13, name: sluggifyTitle(book.title), 
+				    	category: sluggifyTitle(book.category)})" class="rSearchBotLink colorIR">Read more ...</a>
+				<div class="clear"></div>
+			</li>
+			<div>
+			</div>
+		</ul>
+	</div>
+</div>
+<div class="clear"></div>

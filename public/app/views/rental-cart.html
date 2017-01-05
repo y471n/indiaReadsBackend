@@ -1,0 +1,91 @@
+<div ng-if="!numberOfItems">
+	No items in your cart
+</div>
+<div class="row" ng-if="numberOfItems">
+	<div class="panel panelCart box-radius">
+		<div class="panel-heading ">
+			<div>Items in your cart <span class="badge">{{numberOfItems}}</span></div>
+		</div>
+		<div class="panel-body">
+			<div class="row ccRowhdr hidden-sm hidden-xs">
+				<div class="brdrRB col-lg-6 col-md-6 cartHead"><span>Item</span></div>
+				<div class="brdrRB col-lg-2 col-md-2 cartHead"><span>MRP</span></div>
+				<div class="brdrRB col-lg-2 col-md-2 cartHead"><span>Delivery Details</span></div>
+				<div class="brdrRB col-lg-2 col-md-2 cartHead"><span>Initi	al Payable</span></div>
+				<div class="clear"></div>
+			</div>
+			<div class="row ccRowitm" ng-repeat="book in books">
+				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 brdrRB">
+					<div class="col-lg-3 col-md-3 col-sm-4 col-xs-3 cartImage"><a href="productPage.html"><img class="img100" ng-src="https://s3-ap-southeast-1.amazonaws.com/ireads/images/books/{{book.isbn13}}.jpg" fallback-src="app/images/images/book.jpg" alt="{{book.book_name}}"/></a></div>
+					<div class="col-lg-8 col-md-8 col-sm-8 col-xs-9 cartInfo">
+						<p class="ttl">{{book.book_name}}</p>
+						<p class="auth">by: {{book.author}}</p>
+						<p class="cmbshw"><span class="ctotl">Initial Payable :</span><span class="ctotr">{{book.initial_payable | currency:"&#8377 ":0}}</span></p>
+						<p class="cmbshw hidden-xs hidden-sm"><span class="ctotl">Applicable Rent :</span><span class="ctotr">3-5 working days</span></p>
+						<div class="remCart"><a href="#" class="btn btn-link" ng-click="removeFromCart(book)">Remove</a></div>
+					</div>
+				</div>
+				<div class="col-lg-2 col-md-2 hidden-sm hidden-xs brdrRB">{{book.mrp | currency:"&#8377 ":0}}</div>
+				<div class="col-lg-2 col-md-2 hidden-sm hidden-xs brdrRB">3-5 working days</div>
+				<div class="col-lg-2 col-md-2 hidden-sm hidden-xs brdrRB text-danger">{{book.initial_payable | currency:"&#8377 ":0}}</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+		<div class="panel-footer">
+			<div class="row">
+				<div class="col-lg-4 pull-right">
+					<h4 class="text-danger" ng-show="totalPrice<350">
+						<span class="pull-left">Shipping Charge:</span>
+						<span class="pull-right">&#8377 50</span>
+						<div class="clear"></div>
+					</h4>
+					<hr>
+					<h4 class="inntotbot">
+						<span class="pull-left">Total Payable:</span>
+						<span class="pull-right">{{totalAmount | currency:"&#8377 ":0}}</span>
+						<div class="clear"></div>
+					</h4>
+				</div>
+				<div class="clear"></div>
+				<div class="cartAxnCont">
+					<hr>
+					<div class="pull-left col-lg-5 col-md-5 col-sm-5 col-xs-12">
+						<div class="input-group">
+							<input type="text" class="form-control" placeholder="Enter pin code">
+							<span class="input-group-btn">
+								<button class="btn btn-IR" type="button">Check pin</button>
+							</span>
+						</div>
+						<hr class="hidden-lg hidden-md hidden-sm" >
+					</div>
+					<div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 pull-right">
+						<button class="btn btn-default" ui-sref="homepage">Continue Shopping</button>
+						<button class="btn btn-IR pull-right plcordr" ui-sref="checkout.delivery">Place Order</button>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<hr>
+	<div>Shipping charges of &#8377 50 below &#8377 350</div>
+	<hr>
+	<div class="cartBot">
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+			<img src="app/images/images/qualityofbooks.png" alt="">
+			<p>Quality of books assured</p>
+		</div>
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+			<img src="app/images/images/cashondelivery.png" alt="">
+			<p>Cash on Delivery</p>
+		</div>
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+			<img src="app/images/images/homedelivery.png" alt="">
+			<p>Home Delivery and Return</p>
+		</div>
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+			<img src="app/images/images/lowestpricegarunteed.png" alt="">
+			<p>Lowest Price Guarantee</p>
+		</div>
+	</div>
+</div>

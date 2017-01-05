@@ -1,0 +1,27 @@
+<div auto-submit-form event="gateway.redirect"></div>
+
+<div role="tabpanel" class="tab-pane" id="PayCO">
+        <div><h4><b>Payable amount is : <span>Rs. {{total_price}}</span></b></h4></div>
+        <div class="checkbox"><label>
+        <input type="radio" name="PaymentRadio" ng-model="paymentMode" value="paytm"> 
+        <span><img src="app/images/images/paytm.png" alt=""></span></label></div>
+        <div class="checkbox"><label>
+        <input type="radio" name="PaymentRadio" ng-model="paymentMode" value="online"> 
+        <span><img src="app/images/images/payonline.png" alt=""></span></label></div>
+        <div class="checkbox"><label>
+        <!-- <input type="radio" name="PaymentRadio" ng-model="paymentMode" value="payumoney">  -->
+        <span><img src="app/images/images/payumoney.png" alt=""></span></label></div>
+        <div class="checkbox"><label>
+        <input type="radio" name="PaymentRadio" ng-model="paymentMode" value="cod"> <span><img src="app/images/images/cash_on_delivery.png" alt="" ></span></label></div>
+      <!--   <form>
+            <div class="input-group col-lg-6 col-md-8 col-sm-10 col-xs-12">
+                <input type="text" class="form-control" placeholder="Enter coupon code">
+                <span class="input-group-btn">
+                    <button class="btn btn-IR" type="button">Apply</button>
+                </span>
+            </div>
+            <p class="text-success">Coupon code applied successfully</p>
+            <p class="text-danger">Coupon code expired|wrong|etc</p>
+        </form> -->
+        <div class="form-group"><button class="btn btn-IR" ng-click="proceed()">Proceed</button></div>
+    </div>

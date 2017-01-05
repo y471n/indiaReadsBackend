@@ -1,0 +1,28 @@
+<!-- <div class="input-group col-md-12" align="center" ng-show="in_loading">
+	<img class="spinner"  src="app/images/images/spinner.gif" />
+</div> -->
+<div class="row">
+	<div class="col-md-6 col-sm-6 col-xs-12 well white-background" ng-repeat="book in bookshelfService.currently">
+		<div class="row">
+			<div class="col-100">
+				<a href="#">
+					<img ng-src="https://s3-ap-southeast-1.amazonaws.com/ireads/images/books/{{book.isbn13}}.jpg" fallback-src="app/images/images/book.jpg" alt="book image" class="img-responsive">
+				</a>
+			</div><!-- col100 -->
+			<div class="col-220">
+				<h4 id="nameofbook">{{book.title}}</h4>
+				<h5 id="nameofauthor">by {{book.author1}}</h5>
+				<h5 id="mrp">MRP: <strike>Rs.397</strike></h5>
+				<h5 id="initialpayable">Initial Paid: Rs. 367</h5>
+				<h5 id="red-text">Refund of Rs. 200 on returning today.</h5>
+				<span>Return <input type="checkbox"></span>
+			</div><!-- col220 -->
+		</div><!-- row -->
+	</div><!-- col-md-6 -->
+	<div id="bkshlf-down-btns">
+		<button class="btn btn-default" ui-sref="homepage">
+			<span class="glyphicon glyphicon-chevron-left"></span>Continue Shopping
+		</button>
+		<button class="btn button-style" ui-sref="returncart">Return Books</button>
+	</div>
+</div><!-- row -->

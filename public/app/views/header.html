@@ -1,0 +1,945 @@
+<nav class="navbar navbar-static-top" id="header-bar" ng-controller="HeaderCtrl">
+	<nav class="navbar navbar-inverse navigation navbar-static-top header1Nav">
+		<div class="container-fluid container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed catOptTggl pull-left" data-toggle="collapse" data-target="#catDD" aria-expanded="false">
+		        	<span class="sr-only">Toggle navigation</span>
+	                <span class="icon-bar"></span>
+	                <span class="icon-bar"></span>
+	                <span class="icon-bar"></span>
+		    	</button>
+		    	<a class="hidden-lg hidden-md hidden-sm iconHeader" ui-sref="homepage"><img src="app/images/images/icon.png"></a>
+				<button type="button" class="userOptNav navbar-toggle collapsed pull-right" data-toggle="collapse" data-target="#topheader" aria-expanded="false">
+		        	<span class="sr-only">Toggle navigation</span>
+		        	<span class="glyphicon glyphicon-user"></span>
+		    	</button>
+		    	<div class="clear"></div>
+	  		</div><!-- navbar-header -->
+			<div class="collapse navbar-collapse navbar-right" id="topheader">
+				<ul class="nav navbar-nav">
+					<li class="hidden-xs"><a class="rightNavAnch" ui-sref="howitworks" ui-sref="/how-it-works">
+						<span class="glyphicon glyphicon-cog"></span> How it works</a>
+					</li>
+					<li class="hidden-xs"><a class="rightNavAnch" href="https://blog.indiareads.com" target="_blank"><span class="glyphicon glyphicon-file"></span> Blog</a></li>
+					<li class="hidden-xs"><a class="rightNavAnch" ui-sref="contactus" ui-sref="/contact-us"><span class="glyphicon glyphicon-earphone"></span> Contact Us</a></li>
+					<li class="hidden-lg hidden-md hidden-sm">
+						<a class="rightNavAnch" ui-sref="rentalcart"><span class="glyphicon glyphicon-shopping-cart"></span> Cart <span class="badge">{{numberOfItems}} </span></a>
+					</li>
+					<li ng-if="!isAuthenticated()" class="ng-scope"><a class="rightNavAnch" ui-sref="login">Login</a></li>
+					<li class="dropdown" ng-if="isAuthenticated()">
+					 	<a class="rightNavAnch" class="dropdown-toggle" data-toggle="dropdown" role="button">
+					 		<span class="glyphicon glyphicon-user"></span> My Account 
+						 	<span class="caret"></span>
+						 </a>
+						<ul class="dropdown-menu">
+							<div class="row-centered" style="padding:15px;">
+								<label id="red-text"> {{user_email}} </label>
+								<button class="btn button-style" ui-sref="account.myprofile">View Profile</button>
+							</div>
+							<hr id="line">
+							<li><a ui-sref="rentalcart">My Cart</a></li>
+							<hr id="line">
+							<li><a ui-sref="account.bookshelf.available">My Bookshelf</a></li>
+							<hr id="line">
+							<li><a ui-sref="account.bookshelf.currentlyreading">Return Books</a></li>
+							<hr id="line">
+							<li><a ui-sref="account.myorders">My Orders</a></li>
+							<hr id="line">
+							<li><a ui-sref="account.storecredits">Store Credits</a></li>
+							<hr id="line">
+							<li><a ng-click="logout()">Logout</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div><!-- collapse -->
+			<div class="collapse navbar-collapse navbar-left hidden-lg hidden-md hidden-sm " id="catDD">
+				<div class="container col-lg-5">
+					<div class="row mainLink active">
+						<a class="btn"  onclick="dropDown()">Categories</a>
+						<span class="glyphicon glyphicon-menu-down pull-right alCatDD" onclick="dropDown()"></span>
+						<div class="pCatCont">
+							<div class="pCat" onclick="pCatDD1()">
+								<a ui-sref="category.super({supername: 'Literature', superid: 1})" class="btn" data-toggle="dropdown">Literature</a>
+								<span class="glyphicon glyphicon-menu-down pull-right pCatDD" id="literaturedd1"></span>
+								<div class="cCatCont">
+									<div class="cCat">
+										<a ui-sref="category.parent
+	                                	({supername: 'Literature', superid: 1, parentname: 'literature-critism', parentid: 2842})" class="btn btn-link btn-block">Literary Criticism</a>
+									</div>
+									<div class="cCat">
+										<a ui-sref="category.parent
+	                                	({supername: 'Literature', superid: 1, parentname: 'literature-collections', parentid: 1})" class="btn btn-link btn-block">Literature &amp; Fiction</a>
+									</div>
+									<div class="cCat">
+										<a ui-sref="category.parent
+	                                	({supername: 'Literature', superid: 1, parentname: 'literature-collections', parentid: 94})" class="btn btn-link btn-block">Poetry</a>
+									</div>
+									<div class="cCat">
+										<a ui-sref="category.parent
+                                	({supername: 'Literature', superid: 1, parentname: 'drama', parentid: 108})" class="btn btn-link btn-block">Drama</a>
+									</div>
+								</div>
+							</div>
+							<div class="pCat" onclick="pCatDD2()">
+								<a ui-sref="category.super({supername: 'Fiction', superid: 2})" class="btn btn-link" data-toggle="dropdown">Fiction</a>
+								<span class="glyphicon glyphicon-menu-down pull-right pCatDD" id="literaturedd2"></span>
+								<div class="cCatCont">
+									<div class="cCat">
+										<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'Fiction', superid: 2, parentname: 'Fiction', parentid: 78})">Fiction</a>
+									</div>
+									<div class="cCat">
+										<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'Fiction', superid: 2, parentname: 'mystery-and-thriller', parentid: 75379})">Mystery &amp; Thriller</a>
+									</div>
+									<div class="cCat">
+										<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'Fiction', superid: 2, parentname: 'romance', parentid: 69223})">Romance</a>
+									</div>
+									<div class="cCat">
+										<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'Fiction', superid: 2, parentname: 'true-crime', parentid: 1251})">True Crime</a>
+									</div>
+									<div class="cCat">
+										<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'Fiction', superid: 2, parentname: 'humor', parentid: 899})">Humor</a>
+									</div>
+								</div>
+							</div>
+							<div class="pCat" onclick="pCatDD3()">
+								<a ui-sref="category.super({supername: 'Childrens-&amp;-teens', superid: 3})" class="btn btn-link" data-toggle="dropdown" >Childrens &amp; Teen</a>
+								<span class="glyphicon glyphicon-menu-down pull-right pCatDD" id="literaturedd3"></span>
+								<div class="cCatCont">
+									<div class="cCat">
+										<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'Children-&amp;-teens', superid: 3, parentname: 'juvenile-fiction', parentid: 446})">Juvenile Fiction</a>
+									</div>
+									<div class="cCat">
+										<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'Children-&amp;-teens', superid: 3, parentname: 'juvenile-non-fiction', parentid: 463})">Juvenile Non-Fiction</a>
+									</div>
+									<div class="cCat">
+										<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'Children-&amp;-teens', superid: 3, parentname: 'games', parentid: 4351})">Games</a>
+									</div>
+									<div class="cCat">
+										<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'Children-&amp;-teens', superid: 3, parentname: 'comic-&amp;-graphic-novels', parentid: 92})">Comics &amp; Graphic Novels</a>
+									</div>
+								</div>
+							</div>
+							<div class="pCat" onclick="pCatDD4()">
+								<a ui-sref="category.super({supername: 'board-&amp;-exams-prep', superid: 4})"  class="btn btn-link" onclick="pCatDD()">Board &amp; Exam Prep</a>
+								<span class="glyphicon glyphicon-menu-down pull-right pCatDD"  id="literaturedd4"></span>
+								<div class="cCatCont">
+									<div class="cCat">
+										<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'Board-&amp;-exam-prep', superid: 4, parentname: 'competitive-exams', parentid: 34})">Competitive Exams</a>
+									</div>
+									<div class="cCat">
+										<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'Board-&amp;-exam-prep', superid: 4, parentname: 'board-exams', parentid: 4})">Board Exams</a>
+									</div>
+									<div class="cCat">
+										<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'Board-&amp;-exam-prep', superid: 4, parentname: 'education', parentid: 487})">Education</a>
+									</div>
+								</div>
+							</div>
+							<div class="pCat" onclick="pCatDD5()">
+								<a ui-sref="category.super({supername: 'technology-and-engineering', superid: 5})"  class="btn btn-link">Technology &amp; Engineering</a>
+								<span class="glyphicon glyphicon-menu-down pull-right pCatDD" id="literaturedd5"></span>
+								<div class="cCatCont">
+									<div class="cCat">
+										<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'Literature', superid: 5, parentname: 'technology', parentid: 451})">Technology</a>
+									</div>
+									 
+									<div class="cCat">
+										<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'Literature', superid: 5, parentname: 'technology-&amp;-engineering', parentid: 890})">Technology &amp; Engineering</a>
+									</div>
+									 
+									<div class="cCat">
+										<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'Literature', superid: 5, parentname: 'mathematics', parentid: 479})">Mathematics</a>
+									</div>
+									 
+									<div class="cCat">
+										<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'Literature', superid: 5, parentname: 'sciencce', parentid: 450})">Science</a>
+									</div>
+									 
+									<div class="cCat">
+										<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'Literature', superid: 5, parentname: 'computers', parentid: 2})">Computers</a>
+									</div>
+								</div>
+							</div>
+							<div class="pCat" onclick="pCatDD6()">
+								<a ui-sref="category.super({supername: 'other-text-books', superid: 8})"  class="btn btn-link">Other Text Books</a>
+								<span class="glyphicon glyphicon-menu-down pull-right pCatDD" id="literaturedd6"></span>
+								<div class="cCatCont">
+									<div class="cCat">
+										<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'others-text-books', superid: 8, parentname: 'study-aid', parentid: 10711})">Study Aid</a>
+									</div>
+								    <div class="cCat"><a class="btn btn-link btn-block" >Academics &amp; References</a></div>
+								     
+								    <div class="cCat">
+								    	<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'others-text-books', superid: 8, parentname: 'political-science', parentid: 456})">Political Science</a>
+								    </div>
+								     
+								    <div class="cCat">
+								    	<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'others-text-books', superid: 8, parentname: 'arts', parentid: 87})">Arts</a>
+								    </div>
+								     
+								    <div class="cCat">
+								    	<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'others-text-books', superid: 8, parentname: 'law', parentid: 504})">Law</a>
+								    </div>
+								     
+								    <div class="cCat">
+								    	<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'others-text-books', superid: 8, parentname: 'performing-arts', parentid: 557})">Performing Arts</a>
+								    </div>
+								     
+								    <div class="cCat">
+								    	<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'others-text-books', superid: 8, parentname: 'philosophy', parentid: 4131})">Philosophy</a>
+								    </div>
+								    	<div class="cCat">
+								    		<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'others-text-books', superid: 8, parentname: 'social-sciences', parentid: 835})">Social Sciences</a>
+								    	</div>
+								         
+								    	<div class="cCat">
+								    		<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'others-text-books', superid: 8, parentname: 'psychology', parentid: 555})">Psychology</a>
+								    	</div>
+								         
+								        <div class="cCat">
+								        	<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'others-text-books', superid: 8, parentname: 'medical', parentid: 455})">Medical</a>
+								        </div>
+								         
+								        <div class="cCat">
+								        	<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'others-text-books', superid: 8, parentname: 'architecture', parentid: 510})">Architecture</a>
+								        </div>
+								         
+								        <div class="cCat">
+								        	<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'others-text-books', superid: 8, parentname: 'design', parentid: 7731})">Design</a>
+								        </div>
+								         
+								        <div class="cCat">
+								        	<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'others-text-books', superid: 8, parentname: 'foriegn-languages-study', parentid: 894})">Foreign Languages Study</a>
+								        </div>
+								         
+								        <div class="cCat">
+								        	<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'others-text-books', superid: 8, parentname: 'language-arts-discipline', parentid: 453})">Language, Arts &amp; Discipline</a>
+								        </div>
+								</div>
+							</div>
+							<div class="pCat" onclick="pCatDD7()">
+								<a ui-sref="category.super({supername: 'business-and-economics', superid: 7})"  class="btn btn-link">Business &amp; Economics</a>
+								<span class="glyphicon glyphicon-menu-down pull-right pCatDD" id="literaturedd7"></span>
+								<div class="cCatCont">
+									<div class="cCat">
+										<a class="btn btn-link btn-block">Business &amp; Economics</a>
+									</div>
+								</div>
+							</div>
+							<div class="pCat" onclick="pCatDD8()">
+								<a ui-sref="category.super({supername: 'non-fiction', superid: 6})"  class="btn btn-link">Non Fiction</a>
+								<span class="glyphicon glyphicon-menu-down pull-right pCatDD" id="literaturedd8"></span>
+								<div class="cCatCont">
+									<div class="cCat">
+										<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'non-fiction', superid: 6, parentname: 'biographies-and-autobiographies', parentid: 532})">Biographies &amp; Autobiographies</a>
+									</div>
+						             
+						            <div class="cCat">
+						            	<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'non-fiction', superid: 6, parentname: 'health-&amp;-fitness', parentid: 505})">Health &amp; Fitness</a>
+						            </div>
+						             
+						            <div class="cCat">
+						            	<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'non-fiction', superid: 6, parentname: 'history', parentid: 97})">History</a>
+						            </div>
+						             
+						            <div class="cCat">
+						            	<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'non-fiction', superid: 6, parentname: 'nature', parentid: 1073})">Nature</a>
+						            </div>
+						             
+						            <div class="cCat">
+						            	<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'non-fiction', superid: 6, parentname: 'non-classifiable', parentid: 449})">Non Classifiable</a>
+						            </div>
+						             
+						            <div class="cCat">
+						            	<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'non-fiction', superid: 6, parentname: 'pets', parentid: 950})">Pets</a>
+						            </div>
+						             
+						            <div class="cCat">
+						            	<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'non-fiction', superid: 6, parentname: 'photography', parentid: 543})">Photography</a>
+						            </div>
+						             
+						            <div class="cCat">
+						            	<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'non-fiction', superid: 6, parentname: 'travel', parentid: 495})">Travel</a>
+						            </div>
+						             
+						            <div class="cCat">
+						            	<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'non-fiction', superid: 6, parentname: 'transportation', parentid: 4002})">Transportation</a>
+						            </div>
+						             
+						            <div class="cCat">
+						            	<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'non-fiction', superid: 6, parentname: 'sports-and-recreation', parentid: 480})">Sports &amp; Recreation</a>
+						            </div>
+						             
+						            <div class="cCat">
+						            	<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'non-fiction', superid: 6, parentname: 'religion', parentid: 1331})">Religion</a>
+						            </div>
+						             
+						            <div class="cCat">
+						            	<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'non-fiction', superid: 6, parentname: 'body-mind-&amp;-spirit', parentid: 482})">Body, Mind &amp; Spirit</a>
+						            </div>
+			            			<div class="cCat">
+			            				<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'non-fiction', superid: 6, parentname: 'references', parentid: 576})">References</a>
+			            			</div>
+			                         
+			                        <div class="cCat">
+			                        	<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'non-fiction', superid: 6, parentname: 'music', parentid: 452})">Music</a>
+			                        </div>
+			                         
+			                        <div class="cCat">
+			                        	<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'non-fiction', superid: 6, parentname: 'house-&amp;-home', parentid: 9759})">House &amp; Home</a>
+			                        </div>
+			                         
+			                        <div class="cCat">
+			                        	<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'non-fiction', superid: 6, parentname: 'gardening', parentid: 824})">Gardening</a>
+			                        </div>
+			                         
+			                        <div class="cCat">
+			                        	<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'non-fiction', superid: 6, parentname: 'family-&amp;-relationship', parentid: 494})">Family &amp; Relationships</a>
+			                        </div>
+			                         
+			                        <div class="cCat">
+			                        	<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'non-fiction', superid: 6, parentname: 'european-and-german', parentid: 17})">European-German</a>
+			                        </div>
+			                         
+			                        <div class="cCat">
+			                        	<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'non-fiction', superid: 6, parentname: 'crafts-&amp;-hobbies', parentid: 800})">Crafts &amp; Hobbies</a>
+			                        </div>
+			                         
+			                        <div class="cCat">
+			                        	<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'non-fiction', superid: 6, parentname: 'cooking', parentid: 502})">Cooking</a>
+			                        </div>
+			                         
+			                        <div class="cCat">
+			                        	<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'non-fiction', superid: 6, parentname: 'bibles', parentid: 820})">Bibles</a>
+			                        </div>
+			                         
+			                        <div class="cCat">
+			                        	<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'non-fiction', superid: 6, parentname: 'antiques-&amp;-collectibles', parentid: 100})">Antiques &amp; Collectibles</a>
+			                        </div>
+			                         
+			                        <div class="cCat">
+			                        	<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'non-fiction', superid: 6, parentname: 'self-help', parentid: 448})">Self-Help</a>
+			                        </div>
+			                         
+			                        <div class="cCat">
+			                        	<a class="btn btn-link btn-block" ui-sref="category.parent({supername: 'non-fiction', superid: 6, parentname: 'literary-collections', parentid: 815})">Literary Collections</a>
+			                        </div>
+								</div>
+							</div>
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="row mainLink">
+						<a ui-sref="new" class="btn">New</a>
+						<div class="clear"></div>
+					</div>
+					<div class="row mainLink">
+						<a ui-sref="popular" class="btn">Popular</a>
+						<div class="clear"></div>
+					</div>
+					<div class="row mainLink">
+						<a ui-sref="recommended" class="btn">Recommended</a>
+						<div class="clear"></div>
+					</div>
+					<div class="row mainLink">
+						<a ui-sref="category.parent({supername: 'Fiction', superid: 2, parentname: 'Fiction', parentid: 78})" class="btn">Fiction</a>
+						<div class="clear"></div>
+					</div>
+					<div class="row mainLink">
+						<a ui-sref="category.parent({supername: 'non-fiction', superid: 6, parentname: 'self-help', parentid: 448})" class="btn">Self Help</a>
+						<div class="clear"></div>
+					</div>
+					<div class="row mainLink">
+						<a ui-sref="category.parent({supername: 'board-&amp;-exams-prep', superid: 4})" class="btn">Exam Preparation</a>
+						<div class="clear"></div>
+					</div>
+					<div class="row mainLink">
+					<a ui-sref="howitworks" ui-sref="/how-it-works" class="btn">
+					<span class="glyphicon glyphicon-cog"></span> How it works</a>
+				</div>
+				<div class="row mainLink">
+					<a href="https://blog.indiareads.com" target="_blank" class="btn"><span class="glyphicon glyphicon-file"></span> Blog</a>
+					<div class="clear"></div>
+				</div>
+				<div class="row mainLink">
+					<a ui-sref="howitworks" ui-sref="/how-it-works" class="btn">
+					<span class="glyphicon glyphicon-earphone"></span> Contact Us</a>
+				</div>
+				</div>
+			</div>
+
+		</div><!-- container-fluid -->
+	</nav><!-- top-bar -->
+	<div class="logo-bar container-fluid white-background">
+		<div class="container h2container">
+		  	<div class="pull-left col-lg-2 col-md-2 col-sm-2 hidden-xs h2LeftNav">
+		  		<a ui-sref="homepage" ><img src="app/images/images/logo.png" class="img-responsive" alt="IndiaReads.com" id="logo"></a>
+		  	</div>
+		  	<div class="h2RightNav pull-right">
+	  		  	<div class="pull-left h2SearchBtn">
+	  			  	<div class="input-group" style="margin-top:10px;">
+					<form novalidate="novalidate" ng-submit="search()" class="form-group">
+	  				    <input type="search" class="form-control h2AutoInput" placeholder="Search by Title, ISBN, Author, Series.." ng-model="search_query" required>
+	  				    <span class="input-group-btn searchform">
+	  				        <button class="btn btn-SGrey" type="submit" ><span class="glyphicon glyphicon-search"></span> Search</button>
+	  				    </span>
+					</form>
+	  				</div><!-- input-group -->
+	  				<!-- <div class="autoFillContainer"></div> -->
+	  			</div>
+	  			<div class="pull-right hidden-xs h3Bookshelf" style="margin-top:10px;">
+	  				<button ui-sref="rentalcart" class="btn btn-IR" type="button">
+	  					<span class="glyphicon glyphicon-shopping-cart"></span> Cart <span class="badge" ng-if="numberOfItems">{{numberOfItems}} </span></button>
+	  			</div><!-- col-md-3 -->
+		  	</div>
+			<div class="clear"></div>
+		</div><!-- row -->
+	</div><!-- logo-bar -->
+	<nav class="menu-bar navbar navbar-default white-background hidden-xs h3nav">
+		<div class="container-fluid">
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="container">
+				<div class="collapse navbar-collapse" id="menuheader">
+			     	<ul class="nav navbar-nav nav-tabs nav-justified">
+		                <li class="categories">
+		                    <a class="" data-toggle="dropdown">Categories <b class="caret"></b></a>
+		                    <ul class="dropdown-menu multi-level">
+		                        <li class="dropdown-submenu small-list">
+		                            <a ui-sref="category.super({supername: 'Literature', superid: 1})" class="" data-toggle="dropdown">Literature</a>
+		                            <ul class="dropdown-menu">
+		                                <li><a ui-sref="category.parent
+		                                	({supername: 'Literature', superid: 1, parentname: 'literature-critism', parentid: 2842})">Literary Criticism</a></li>
+		                                <hr id="line">
+		                                <li><a ui-sref="category.parent
+		                                	({supername: 'Literature', superid: 1, parentname: 'literature-fiction', parentid: 1})">Literature &amp; Fiction</a></li>
+		                                <hr id="line"hhh>
+		                                <li><a ui-sref="category.parent
+		                                	({supername: 'Literature', superid: 1, parentname: 'poetry', parentid: 94})">Poetry</a></li>
+		                                <hr id="line">
+		                                <li><a ui-sref="category.parent
+		                                	({supername: 'Literature', superid: 1, parentname: 'drama', parentid: 108})">Drama</a></li>
+		                                <hr id="line">
+		                            </ul>
+		                        </li>
+		                        <hr id="line">
+		                        <li class="dropdown-submenu small-list">
+		                            <a ui-sref="category.super({supername: 'Fiction', superid: 2})" class="" data-toggle="dropdown">Fiction</a>
+		                            <ul class="dropdown-menu">
+		                                <li><a ui-sref="category.parent
+		                                	({supername: 'Fiction', superid: 2, parentname: 'Fiction', parentid: 78})">Fiction</a></li>
+		                                <hr id="line">
+		                                <li><a ui-sref="category.parent
+		                                	({supername: 'Fiction', superid: 2, parentname: 'mystery-and-thriller', parentid: 75379})">Mystery &amp; Thriller</a></li>
+		                                <hr id="line">
+		                                <li><a ui-sref="category.parent
+		                                	({supername: 'Fiction', superid: 2, parentname: 'romance', parentid: 69223})">Romance</a></li>
+		                                <hr id="line">
+		                                <li><a ui-sref="category.parent
+		                                	({supername: 'Fiction', superid: 2, parentname: 'true-crime', parentid: 1251})">True Crime</a></li>
+		                                <hr id="line">
+		                                <li><a ui-sref="category.parent
+		                                	({supername: 'Fiction', superid: 2, parentname: 'humor', parentid: 899})">Humor</a></li>
+		                                <hr id="line">
+		                            </ul>
+		                        </li>
+		                        <hr id="line">
+		                        <li class="dropdown-submenu small-list">
+		                            <a ui-sref="category.super({supername: 'Childrens-&amp;-teens', superid: 3})" class="" data-toggle="dropdown">Childrens &amp; Teen</a>
+		                            <ul class="dropdown-menu">
+		                                <li><a ui-sref="category.parent
+		                                	({supername: 'Children-&amp;-teens', superid: 3, parentname: 'juvenile-fiction', parentid: 446})">Juvenile Fiction</a></li>
+		                                <hr id="line">
+		                                <li><a ui-sref="category.parent
+		                                	({supername: 'Children-&amp;-teens', superid: 3, parentname: 'juvenile-non-fiction', parentid: 463})">Juvenile Non-Fiction</a></li>
+		                                <hr id="line">
+		                                <li><a ui-sref="category.parent
+		                                	({supername: 'Children-&amp;-teens', superid: 3, parentname: 'games', parentid: 4351})">Games</a></li>
+		                                <hr id="line">
+		                                <li><a ui-sref="category.parent
+		                                	({supername: 'Children-&amp;-teens', superid: 3, parentname: 'comic-&amp;-graphic-novels', parentid: 92})">Comics &amp; Graphic Novels</a></li>
+		                                <hr id="line">
+		                            </ul>
+		                        </li>
+		                        <hr id="line">
+		                        <li class="dropdown-submenu small-list">
+		                            <a ui-sref="category.super({supername: 'board-&amp;-exams-prep', superid: 4})" class="" data-toggle="dropdown">Board &amp; Exam Prep</a>
+		                            <ul class="dropdown-menu">
+		                                <li><a ui-sref="category.parent
+		                                	({supername: 'Board-&amp;-exam-prep', superid: 4, parentname: 'competitive-exams', parentid: 34})">Competitive Exams</a></li>
+		                                <hr id="line">
+		                                <li><a ui-sref="category.parent
+		                                	({supername: 'Board-&amp;-exam-prep', superid: 4, parentname: 'board-exams', parentid: 4})">Board Exams</a></li>
+		                                <hr id="line">
+		                                <li><a ui-sref="category.parent
+		                                	({supername: 'Board-&amp;-exam-prep', superid: 4, parentname: 'education', parentid: 487})">Education</a></li>
+		                                <hr id="line">
+		                            </ul>
+		                        </li>
+		                        <hr id="line">
+		                        <li class="dropdown-submenu small-list">
+		                            <a ui-sref="category.super({supername: 'technology-and-engineering', superid: 5})" class="" data-toggle="dropdown">Technology &amp; Engineering</a>
+		                            <ul class="dropdown-menu">
+		                                <li><a ui-sref="category.parent
+		                                	({supername: 'Literature', superid: 5, parentname: 'technology', parentid: 451})">Technology</a></li>
+		                                <hr id="line">
+		                                <li><a ui-sref="category.parent
+		                                	({supername: 'Literature', superid: 5, parentname: 'technology-&amp;-engineering', parentid: 890})">Technology &amp; Engineering</a></li>
+		                                <hr id="line">
+		                                <li><a ui-sref="category.parent
+		                                	({supername: 'Literature', superid: 5, parentname: 'mathematics', parentid: 479})">Mathematics</a></li>
+		                                <hr id="line">
+		                                <li><a ui-sref="category.parent
+		                                	({supername: 'Literature', superid: 5, parentname: 'sciencce', parentid: 450})">Science</a></li>
+		                                <hr id="line">
+		                                <li><a ui-sref="category.parent
+		                                	({supername: 'Literature', superid: 5, parentname: 'computers', parentid: 2})">Computers</a></li>
+		                                <hr id="line">
+		                            </ul>
+		                        </li>
+		                        <hr id="line">
+		                        <li class="dropdown-submenu">
+		                            <a ui-sref="category.super({supername: 'other-text-books', superid: 8})" class="" data-toggle="dropdown">Other Text Books</a>
+		                            <ul class="dropdown-menu row large-list">
+		                                <div class="col-md-6 col-sm-6">
+		                                	<li><a ui-sref="category.parent
+		                                	({supername: 'others-text-books', superid: 8, parentname: 'study-aid', parentid: 10711})">Study Aid</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'others-text-books', superid: 8, 
+		                                	parentname: 'academics-&amp;-reference', parentid: 3})">Academics &amp; References</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'others-text-books', superid: 8, parentname: 'political-science', parentid: 456})">Political Science</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'others-text-books', superid: 8, parentname: 'arts', parentid: 87})">Arts</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'others-text-books', superid: 8, parentname: 'law', parentid: 504})">Law</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'others-text-books', superid: 8, parentname: 'performing-arts', parentid: 557})">Performing Arts</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'others-text-books', superid: 8, parentname: 'philosophy', parentid: 4131})">Philosophy</a></li>
+			                                <hr id="line">
+		                                </div>
+		                                <div class="col-md-6 col-sm-6">
+		                                	<li><a ui-sref="category.parent
+		                                	({supername: 'others-text-books', superid: 8, parentname: 'social-sciences', parentid: 835})">Social Sciences</a></li>
+			                                <hr id="line">
+		                                	<li><a ui-sref="category.parent
+		                                	({supername: 'others-text-books', superid: 8, parentname: 'psychology', parentid: 555})">Psychology</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'others-text-books', superid: 8, parentname: 'medical', parentid: 455})">Medical</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'others-text-books', superid: 8, parentname: 'architecture', parentid: 510})">Architecture</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'others-text-books', superid: 8, parentname: 'design', parentid: 7731})">Design</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'others-text-books', superid: 8, parentname: 'foriegn-languages-study', parentid: 894})">Foreign Languages Study</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'others-text-books', superid: 8, parentname: 'language-arts-discipline', parentid: 453})">Language, Arts &amp; Discipline</a></li>
+			                                <hr id="line">
+		                                </div>
+		                            </ul>
+		                        </li>
+		                        <hr id="line">
+		                        <li class="dropdown-submenu small-list">
+		                            <a ui-sref="category.super({supername: 'business-and-economics', superid: 7})" class="" data-toggle="dropdown">Business &amp; Economics</a>
+		                            <ul class="dropdown-menu">
+		                                <li><a ui-sref="category.parent({supername: 'business-&amp;-economics', superid: 7, parentname: 'business-&amp;-economics', parentid: 478})">Business &amp; Economics</a></li>
+		                            </ul>
+		                        </li>
+		                        <hr id="line">
+		                        <li class="dropdown-submenu">
+		                            <a ui-sref="category.super({supername: 'non-fiction', superid: 6})" class="" data-toggle="dropdown">Non Fiction</a>
+		                            <hr id="line">
+		                            <ul class="dropdown-menu row large-list">
+		                        		<div class="col-md-6 col-sm-6">
+		                        			<li><a ui-sref="category.parent
+		                                	({supername: 'non-fiction', superid: 6, parentname: 'biographies-and-autobiographies', parentid: 532})">Biographies &amp; Autobiographies</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'non-fiction', superid: 6, parentname: 'health-&amp;-fitness', parentid: 505})">Health &amp; Fitness</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'non-fiction', superid: 6, parentname: 'history', parentid: 97})">History</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'non-fiction', superid: 6, parentname: 'nature', parentid: 1073})">Nature</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'non-fiction', superid: 6, parentname: 'non-classifiable', parentid: 449})">Non Classifiable</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'non-fiction', superid: 6, parentname: 'pets', parentid: 950})">Pets</a></li>
+			                                <hr id="line">
+			                                <li><a po>Photography</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'non-fiction', superid: 6, parentname: 'travel', parentid: 495})">Travel</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'non-fiction', superid: 6, parentname: 'transportation', parentid: 4002})">Transportation</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'non-fiction', superid: 6, parentname: 'sports-and-recreation', parentid: 480})">Sports &amp; Recreation</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'non-fiction', superid: 6, parentname: 'religion', parentid: 1331})">Religion</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'non-fiction', superid: 6, parentname: 'body-mind-&amp;-spirit', parentid: 482})">Body, Mind &amp; Spirit</a></li>
+			                                <hr id="line">
+		                        		</div>
+		                        		<div class="col-md-6 col-sm-6">
+		                        			<li><a ui-sref="category.parent
+		                                	({supername: 'non-fiction', superid: 6, parentname: 'references', parentid: 576})">References</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'non-fiction', superid: 6, parentname: 'music', parentid: 452})">Music</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'non-fiction', superid: 6, parentname: 'house-&amp;-home', parentid: 9759})">House &amp; Home</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'non-fiction', superid: 6, parentname: 'gardening', parentid: 824})">Gardening</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'non-fiction', superid: 6, parentname: 'family-&amp;-relationship', parentid: 494})">Family &amp; Relationships</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'non-fiction', superid: 6, parentname: 'european-and-german', parentid: 17})">European-German</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'non-fiction', superid: 6, parentname: 'crafts-&amp;-hobbies', parentid: 800})">Crafts &amp; Hobbies</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'non-fiction', superid: 6, parentname: 'cooking', parentid: 502})">Cooking</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'non-fiction', superid: 6, parentname: 'bibles', parentid: 820})">Bibles</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'non-fiction', superid: 6, parentname: 'antiques-&amp;-collectibles', parentid: 100})">Antiques &amp; Collectibles</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'non-fiction', superid: 6, parentname: 'self-help', parentid: 448})">Self-Help</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'non-fiction', superid: 6, parentname: 'literary-collections', parentid: 815})">Literary Collections</a></li>
+			                                <hr id="line">
+		                        		</div>
+		                            </ul>
+		                        </li>
+		                    </ul>
+		                </li>
+		                <li class="categories"><a ui-sref="new">New</a></li>
+		                <li class="categories"><a ui-sref="popular">Popular</a></li>
+		                <li class="categories"><a ui-sref="recommended">Recommended</a></li>
+		                <li class="categories"><a ui-sref="category.parent({supername: 'Fiction', superid: 2})">Fiction</a></li>
+		                <li class="categories"><a ui-sref="category.parent({supername: 'non-fiction', superid: 6, parentname: 'self-help', parentid: 448})">Self Help</a></li>
+		                <li class="categories"><a ui-sref="category.parent({supername: 'board-&amp;-exams-prep', superid: 4})">Exam Preparations</a></li>
+		            </ul>
+				</div><!-- /.navbar-collapse -->
+			</div>
+		</div><!-- /.container-fluid -->
+	</nav><!-- menu-bar -->
+	<nav class="menu-bar navbar navbar-default white-background hidden-xs h3nav h3NavSticky">
+		<div class="container-fluid">
+		    <div class="container">
+			    <div class="collapse navbar-collapse container" id="menuheader">
+			     	<ul class="nav navbar-nav nav-tabs nav-justified">
+		                <li class="categories categorySticky">
+		                    <a class="stickMainCat" data-toggle="dropdown">Categories <b class="caret"></b></a>
+		                    <ul class="dropdown-menu multi-level">
+		                        <li class="dropdown-submenu small-list">
+		                            <a ui-sref="category.parent({supername: 'Literature', superid: 1})" class="" data-toggle="dropdown">Literature</a>
+		                            <ul class="dropdown-menu">
+		                                <li><a ui-sref="category.parent
+		                                	({supername: 'Literature', superid: 1, parentname: 'literature-critism', parentid: 2842})">Literary Criticism</a></li>
+		                                <hr id="line">
+		                                <li><a ui-sref="category.parent
+		                                	({supername: 'Literature', superid: 1, parentname: 'literature-collections', parentid: 1})">Literature &amp; Fiction</a></li>
+		                                <hr id="line"hhh>
+		                                <li><a ui-sref="category.parent
+		                                	({supername: 'Literature', superid: 1, parentname: 'literature-collections', parentid: 94})">Poetry</a></li>
+		                                <hr id="line">
+		                                <li><a ui-sref="category.parent
+		                                	({supername: 'Literature', superid: 1, parentname: 'literature-collections', parentid: 108})">Drama</a></li>
+		                                <hr id="line">
+		                            </ul>
+		                        </li>
+		                        <hr id="line">
+		                        <li class="dropdown-submenu small-list">
+		                            <a ui-sref="category.parent({supername: 'Fiction', superid: 2})" class="" data-toggle="dropdown">Fiction</a>
+		                            <ul class="dropdown-menu">
+		                                <li><a ui-sref="category.parent
+		                                	({supername: 'Fiction', superid: 2, parentname: 'Fiction', parentid: 78})">Fiction</a></li>
+		                                <hr id="line">
+		                                <li><a ui-sref="category.parent
+		                                	({supername: 'Fiction', superid: 2, parentname: 'mystery-and-thriller', parentid: 75379})">Mystery &amp; Thriller</a></li>
+		                                <hr id="line">
+		                                <li><a ui-sref="category.parent
+		                                	({supername: 'Fiction', superid: 2, parentname: 'romance', parentid: 69223})">Romance</a></li>
+		                                <hr id="line">
+		                                <li><a ui-sref="category.parent
+		                                	({supername: 'Fiction', superid: 2, parentname: 'true-crime', parentid: 1251})">True Crime</a></li>
+		                                <hr id="line">
+		                                <li><a ui-sref="category.parent
+		                                	({supername: 'Fiction', superid: 2, parentname: 'humor', parentid: 899})">Humor</a></li>
+		                                <hr id="line">
+		                            </ul>
+		                        </li>
+		                        <hr id="line">
+		                        <li class="dropdown-submenu small-list">
+		                            <a ui-sref="category.parent({supername: 'Childrens-&amp;-teens', superid: 3})" class="" data-toggle="dropdown">Childrens &amp; Teen</a>
+		                            <ul class="dropdown-menu">
+		                                <li><a ui-sref="category.parent
+		                                	({supername: 'Children-&amp;-teens', superid: 3, parentname: 'juvenile-fiction', parentid: 446})">Juvenile Fiction</a></li>
+		                                <hr id="line">
+		                                <li><a ui-sref="category.parent
+		                                	({supername: 'Children-&amp;-teens', superid: 3, parentname: 'juvenile-non-fiction', parentid: 463})">Juvenile Non-Fiction</a></li>
+		                                <hr id="line">
+		                                <li><a ui-sref="category.parent
+		                                	({supername: 'Children-&amp;-teens', superid: 3, parentname: 'games', parentid: 4351})">Games</a></li>
+		                                <hr id="line">
+		                                <li><a ui-sref="category.parent
+		                                	({supername: 'Children-&amp;-teens', superid: 3, parentname: 'comic-&amp;-graphic-novels', parentid: 92})">Comics &amp; Graphic Novels</a></li>
+		                                <hr id="line">
+		                            </ul>
+		                        </li>
+		                        <hr id="line">
+		                        <li class="dropdown-submenu small-list">
+		                            <a ui-sref="category.parent({supername: 'board-&amp;-exams-prep', superid: 4})" class="" data-toggle="dropdown">Board &amp; Exam Prep</a>
+		                            <ul class="dropdown-menu">
+		                                <li><a ui-sref="category.parent
+		                                	({supername: 'Board-&amp;-exam-prep', superid: 4, parentname: 'competitive-exams', parentid: 34})">Competitive Exams</a></li>
+		                                <hr id="line">
+		                                <li><a ui-sref="category.parent
+		                                	({supername: 'Board-&amp;-exam-prep', superid: 4, parentname: 'board-exams', parentid: 4})">Board Exams</a></li>
+		                                <hr id="line">
+		                                <li><a ui-sref="category.parent
+		                                	({supername: 'Board-&amp;-exam-prep', superid: 4, parentname: 'education', parentid: 487})">Education</a></li>
+		                                <hr id="line">
+		                            </ul>
+		                        </li>
+		                        <hr id="line">
+		                        <li class="dropdown-submenu small-list">
+		                            <a ui-sref="category.parent({supername: 'technology-and-engineering', superid: 5})" class="" data-toggle="dropdown">Technology &amp; Engineering</a>
+		                            <ul class="dropdown-menu">
+		                                <li><a ui-sref="category.parent
+		                                	({supername: 'Literature', superid: 5, parentname: 'technology', parentid: 451})">Technology</a></li>
+		                                <hr id="line">
+		                                <li><a ui-sref="category.parent
+		                                	({supername: 'Literature', superid: 5, parentname: 'technology-&amp;-engineering', parentid: 890})">Technology &amp; Engineering</a></li>
+		                                <hr id="line">
+		                                <li><a ui-sref="category.parent
+		                                	({supername: 'Literature', superid: 5, parentname: 'mathematics', parentid: 479})">Mathematics</a></li>
+		                                <hr id="line">
+		                                <li><a ui-sref="category.parent
+		                                	({supername: 'Literature', superid: 5, parentname: 'sciencce', parentid: 450})">Science</a></li>
+		                                <hr id="line">
+		                                <li><a ui-sref="category.parent
+		                                	({supername: 'Literature', superid: 5, parentname: 'computers', parentid: 2})">Computers</a></li>
+		                                <hr id="line">
+		                            </ul>
+		                        </li>
+		                        <hr id="line">
+		                        <li class="dropdown-submenu">
+		                            <a ui-sref="category.parent({supername: 'other-text-books', superid: 8})" class="" data-toggle="dropdown">Other Text Books</a>
+		                            <ul class="dropdown-menu row large-list">
+		                                <div class="col-md-6 col-sm-6">
+		                                	<li><a ui-sref="category.parent
+		                                	({supername: 'others-text-books', superid: 8, parentname: 'study-aid', parentid: 10711})">Study Aid</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'others-text-books', superid: 8, 
+		                                	parentname: 'academics-&amp;-reference', parentid: 3})">Academics &amp; References</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'others-text-books', superid: 8, parentname: 'political-science', parentid: 456})">Political Science</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'others-text-books', superid: 8, parentname: 'arts', parentid: 87})" >Arts</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'others-text-books', superid: 8, parentname: 'law', parentid: 504})">Law</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'others-text-books', superid: 8, parentname: 'performing-arts', parentid: 557})">Performing Arts</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'others-text-books', superid: 8, parentname: 'philosophy', parentid: 4131})">Philosophy</a></li>
+			                                <hr id="line">
+		                                </div>
+		                                <div class="col-md-6 col-sm-6">
+		                                	<li><a ui-sref="category.parent
+		                                	({supername: 'others-text-books', superid: 8, parentname: 'social-sciences', parentid: 835})">Social Sciences</a></li>
+			                                <hr id="line">
+		                                	<li><a ui-sref="category.parent
+		                                	({supername: 'others-text-books', superid: 8, parentname: 'psychology', parentid: 555})">Psychology</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'others-text-books', superid: 8, parentname: 'medical', parentid: 455})">Medical</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'others-text-books', superid: 8, parentname: 'architecture', parentid: 510})">Architecture</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'others-text-books', superid: 8, parentname: 'design', parentid: 7731})">Design</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'others-text-books', superid: 8, parentname: 'foriegn-languages-study', parentid: 894})">Foreign Languages Study</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'others-text-books', superid: 8, parentname: 'language-arts-discipline', parentid: 453})">Language, Arts &amp; Discipline</a></li>
+			                                <hr id="line">
+		                                </div>
+		                            </ul>
+		                        </li>
+		                        <hr id="line">
+		                        <li class="dropdown-submenu small-list">
+		                            <a ui-sref="category.parent({supername: 'business-and-economics', superid: 7})" class="" data-toggle="dropdown">Business &amp; Economics</a>
+		                            <ul class="dropdown-menu">
+		                                <li><a ui-sref="category.parent
+		                                	({supername: 'business-&amp;-economics', superid: 7, parentname: 'business-&amp;-economics', parentid: 478})">Business &amp; Economics</a></li>
+		                            </ul>
+		                        </li>
+		                        <hr id="line">
+		                        <li class="dropdown-submenu">
+		                            <a ui-sref="category.parent({supername: 'non-fiction', superid: 6})" class="" data-toggle="dropdown">Non Fiction</a>
+		                            <hr id="line">
+		                            <ul class="dropdown-menu row large-list">
+	                            		<div class="col-md-6 col-sm-6">
+	                            			<li><a ui-sref="category.parent
+		                                	({supername: 'non-fiction', superid: 6, parentname: 'biographies-and-autobiographies', parentid: 532})">Biographies &amp; Autobiographies</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'non-fiction', superid: 6, parentname: 'health-&amp;-fitness', parentid: 505})">Health &amp; Fitness</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'non-fiction', superid: 6, parentname: 'history', parentid: 97})">History</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'non-fiction', superid: 6, parentname: 'nature', parentid: 1073})">Nature</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'non-fiction', superid: 6, parentname: 'non-classifiable', parentid: 449})">Non Classifiable</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'non-fiction', superid: 6, parentname: 'pets', parentid: 950})">Pets</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'non-fiction', superid: 6, parentname: 'photography', parentid: 543})">Photography</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'non-fiction', superid: 6, parentname: 'travel', parentid: 495})">Travel</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'non-fiction', superid: 6, parentname: 'transportation', parentid: 4002})">Transportation</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'non-fiction', superid: 6, parentname: 'sports-and-recreation', parentid: 480})">Sports &amp; Recreation</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'non-fiction', superid: 6, parentname: 'religion', parentid: 1331})">Religion</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'non-fiction', superid: 6, parentname: 'body-mind-&amp;-spirit', parentid: 482})">Body, Mind &amp; Spirit</a></li>
+			                                <hr id="line">
+	                            		</div>
+	                            		<div class="col-md-6 col-sm-6">
+	                            			<li><a ui-sref="category.parent
+		                                	({supername: 'non-fiction', superid: 6, parentname: 'references', parentid: 576})">References</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'non-fiction', superid: 6, parentname: 'music', parentid: 452})">Music</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'non-fiction', superid: 6, parentname: 'house-&amp;-home', parentid: 9759})">House &amp; Home</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'non-fiction', superid: 6, parentname: 'gardening', parentid: 824})">Gardening</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'non-fiction', superid: 6, parentname: 'family-&amp;-relationship', parentid: 494})">Family &amp; Relationships</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'non-fiction', superid: 6, parentname: 'european-and-german', parentid: 17})">European-German</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'non-fiction', superid: 6, parentname: 'crafts-&amp;-hobbies', parentid: 800})">Crafts &amp; Hobbies</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'non-fiction', superid: 6, parentname: 'cooking', parentid: 502})">Cooking</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'non-fiction', superid: 6, parentname: 'bibles', parentid: 820})">Bibles</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'non-fiction', superid: 6, parentname: 'antiques-&amp;-collectibles', parentid: 100})">Antiques &amp; Collectibles</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'non-fiction', superid: 6, parentname: 'self-help', parentid: 448})">Self-Help</a></li>
+			                                <hr id="line">
+			                                <li><a ui-sref="category.parent
+		                                	({supername: 'non-fiction', superid: 6, parentname: 'literary-collections', parentid: 815})">Literary Collections</a></li>
+			                                <hr id="line">
+	                            		</div>
+		                            </ul>
+		                        </li>
+		                    </ul>
+		                </li>
+		                <li class="iconBarSticky categorySticky">
+		                	<a ui-sref="homepage">
+		                		<img src="app/images/images/logo.png" alt="IndiaReads.com | Home" id="logoSticky">
+		                	</a>
+		                </li>
+		                <li class="searchBarSticky">
+	                	  	<div class="pull-right h2SearchBtn">
+	                		  	<div class="input-group StickIpGrp" style="margin-top:10px;">
+	                		  		<form novalidate="novalidate" ng-submit="search()" class="form-group">
+		                			    <input type="search" class="form-control" placeholder="Search by Title, ISBN, Author, Series.." ng-model="search_query" required>
+		                			    <span class="input-group-btn searchform">
+		                			        <button class="btn btn-SGrey" type="button"><span class="glyphicon glyphicon-search"></span> Search</button>
+		                			    </span>
+		                			</form>
+	                			</div><!-- input-group -->
+	                		</div>
+		                </li>
+		                <div class="clear"></div>
+		            </ul>
+				</div><!-- /.navbar-collapse -->
+		    </div>
+		</div><!-- /.container-fluid -->
+	</nav><!-- menu-bar -->
+</nav><!-- header-bar -->
+<!-- <div>	
+	<div class="spinner" ng-show="loading" style="padding:200px!important;">
+      <span us-spinner="{radius:20, width:8, length: 16}"></span>
+	</div>
+</div> -->
+<script>
+	// $('input.h2AutoInput').keyup(function(event) {
+	// 	if ($(this).val().length>=3) {
+	// 			var autoFillWidth=$('.h3SearchBtn').width();
+	// 			var i=$(this).val().length;
+	// 			$('.autoFillContainer').css({
+	// 			'width': autoFillWidth,
+	// 			'display':'block'
+	// 		});
+	// 		$('.autoFillContainer').html("<div class='atfAnchor'></div>");
+	// 		$('.atfAnchor').append("<a class='btn btn-block btn-atf'>ISBN"+i+"</a><a class='btn btn-block btn-atf'>ISBN"+i+"</a><a class='btn btn-block btn-atf'>ISBN"+i+"</a><a class='btn btn-block btn-atf'>ISBN"+i+"</a><a class='btn btn-block btn-atf'>ISBN"+i+"</a><a class='btn btn-block btn-atf'>ISBN"+i+"</a>");
+	// 	}
+	// 	else{
+	// 	$('.autoFillContainer').css('display','none');
+	// 	}
+	// });
+</script>

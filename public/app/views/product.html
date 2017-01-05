@@ -1,0 +1,410 @@
+<div class="input-group col-md-12" align="center" ng-show="in_loading">
+	<img class="spinner"  src="app/images/images/spinner.gif" />
+</div>
+<div class="row container wrapper" ng-show="showBook" ng-hide="in_loading">
+	<div class="row">
+		<ol class="breadcrumb">
+			<li><a ui-sref="homepage">Home</a></li>
+			<li><a href="#">{{unSluggifyTitle(category)}}</a></li>
+		</ol>
+	</div>
+	<div class="row">
+		<div class="col-lg-3 col-md-3 col-sm-4">
+			<a href="#">
+				<img ng-src="https://s3-ap-southeast-1.amazonaws.com/ireads/images/books/{{book.isbn13}}.jpg" fallback-src="app/images/images/book.jpg" alt="{{book.title}}{{book.author1}}" class="prodImg img-responsive">
+			</a>
+		</div>
+		<div class="col-lg-4 col-md-4 col-sm-6 prodInfoText">
+			<h4><b>{{book.title}}</b></h4>
+			<h5>{{book.author1}} {{book.author2}} {{book.author3}}</h5>
+			<p><b>Includes:</b> <button class="btn btn-link" data-toggle="modal" data-target="#satguarModal">Satisfaction Guarantee</button> </p>
+			<div class="modal fade" id="satguarModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h3 class="modal-title" id="myModalLabel">Satisfaction Guarantee</h3>
+							<h4>We put you first! That is why every book comes with an easy experience, completely designed to save you time and money</h4>
+						</div>
+						<div class="modal-body">
+							<div class="media">
+								<div class="media-left">
+									<img class="media-object" src="app/images/images/shippingblack.png" alt="..." class="img-responsive" height="100" width="125">
+								</div>
+								<div class="media-body">
+									<div class="media-heading"><b>Shipping</b></div>
+									<p>We offer free delivery for orders above &#8377 350 and free returns. We also guarantee delivery of your books no later than the date on your order confirmation.</p>
+								</div>
+							</div>
+							<div class="media">
+									<div class="media-left">
+										<img class="media-object" src="app/images/images/bookquality.png" alt="..." class="img-responsive" height="100" width="125">
+									</div>
+								<div class="media-body">
+									<div class="media-heading"><b>Book Quality</b></div>
+									<p>If for any reason, your book's condition is not acceptable, we will immediately ship you another copy as soon as possible.</p>
+								</div>
+							</div>
+							<div class="media">
+								<div class="media-left">
+									<img class="media-object" src="app/images/images/highlight.png" alt="....." class="img-responsive" height="100" width="125">
+								</div>
+								<div class="media-body">
+									<div class="media-heading"><b>Highlighting</b></div>
+									<p>The book you are renting will be used by someone else after you return it. Please refrain from highlighting or writing on your rental copy. No writing or permanent damage is allowed.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<p><b>ISBN-13:</b> <span>{{book.isbn13}}</span> </p>
+			<p ng-if="mrp_is_not_null">Guaranteed Delivery by <span>{{deliveryTime()}}</span> <button class="btn btn-link" data-toggle="modal" data-target="#deliverydetModal">Details</button> </p>
+			<div class="modal fade" id="deliverydetModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" ng-if="mrp_is_not_null" >
+				<div class="modal-dialog" role="document">
+					<div class="modal-content" style="width: 50%;"	>
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="myModalLabel" align="center">Delivery Details</h4>
+						</div>
+						<div class="modal-body">
+							<ul class="list-group">
+								<li class="list-group-item" align="center" style="border: 0px solid black;">
+									<img src="app/images/images/deliverydetails.png" alt="Delivery Item">
+								</li>
+								<li class="list-group-item" style="border: 0px solid black;">Delivered within {{deliveredWithin()}} business days.</li>
+								<li class="list-group-item" style="border: 0px solid black;">Guaranteed delivery by {{deliveryTime()}}</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>	
+			<div class="row"> 
+				<ul>
+					<li>Shipping charges of &#8377 50 on orders below &#8377 350</li>
+					<li>Cash on Delivery charges of &#8377 10 extra</li>
+					<li>FREE return shipping</li>	
+				</ul>
+			</div>
+			<!-- <div class="row">
+				<a class="btn btn-link txtGoodReads" href="#"><b>Goodreads review </b><sup><span class="badge">g</span></sup></a>
+			</div> -->
+			<div class="row" ng-if="mrp_is_not_null"><button class="btn btn-link" data-toggle="modal" data-target="#rentalModal">Rental Details Chart</button> </div>
+			<div class="modal fade" id="rentalModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="myModalLabel"><b>Flexible rental schemes</b></h4>
+						</div>
+						<div class="modal-body">
+							<ul class="list-group">
+								<li class="list-group-item"><h3><span class="rentDetailsLeftCol pull-left">Duration</span><span  class="pull-right">Applicable Rent</span></h3><p class="clear"></p></li>
+								<li class="list-group-item"><span class="rentDetailsLeftCol pull-left">360 days (due {{returnTime(3)}})</span><span class="pull-right">{{returnRent(3)}}</span><p class="clear"></p></li>
+								<li class="list-group-item"><span class="rentDetailsLeftCol pull-left">180 days (due {{returnTime(2)}})</span><span class="pull-right">{{returnRent(2)}}</span><p class="clear"></p></li>
+								<li class="list-group-item"><span class="rentDetailsLeftCol pull-left">90 days (due {{returnTime(1)}})</span><span class="pull-right">{{returnRent(1)}}</span><p class="clear"></p></li>
+								<li class="list-group-item"><span class="rentDetailsLeftCol pull-left">30 days (due {{returnTime(0)}})</span><span class="pull-right">
+								{{returnRent(0)}}</span><p class="clear"></p></li>
+								<li class="list-group-item">
+									<p>Refund will be based on rental duration</p>
+									<p>Refund=Initial Payable - Applicable Rent</p>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row"><button class="btn btn-link" data-toggle="modal" data-target="#retainModal">What if I want to retain the book?</button></div>
+			<div class="modal fade" id="retainModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="myModalLabel" align="center"><b>What if I want to retain this book?</b></h4>
+						</div>
+						<div class="modal-body">
+							<div class="media">
+								<div class="media-left">
+									<img class="media-object" src="app/images/images/retain.png" alt="....." class="img-responsive">
+								</div>
+								<div class="media-body">
+									Flexible Rentals! You now have the option to return the book any-time convenient or even retain. You retain the book, we retain the Initial Payable!
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>	
+		</div>
+		<div class="col-lg-4 col-md-5 col-sm-12 col-xs-12" ng-if="mrp_is_not_null" ng-if="mrp_is_not_null">
+			<div class="panel productPanel">
+				<div class="panel-heading"><b>Rent Duration</b></div>
+				<div class="panel-body">
+					<div class="row">
+						<label class="radioGroup alt1" ng-class="tabActive(0)">
+							<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked ng-click="calculateRent(0)"><br>30 days
+						</label>
+						<label class="radioGroup alt2" ng-class="tabActive(1)">
+							<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1"
+								ng-click="calculateRent(1)"><br>90 days
+						</label>
+						<label class="radioGroup alt1" ng-class="tabActive(2)">
+							<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1"
+							ng-click="calculateRent(2)"><br>180 days
+						</label>
+						<label class="radioGroup alt2" ng-class="tabActive(3)">
+							<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1"
+							ng-click="calculateRent(3)"><br>360 days
+						</label>
+					</div>
+					<div class="row row-centered bgDark">
+						
+						<p>MRP : <del>{{book.rent.mrp | currency:"&#8377 ":0}}</del></p>
+						<p class="rentSplP"><b id="red-text">Rent : {{rent | currency:"&#8377 ":0}}</b></p>
+						<p class="rentSplP" id="red-text">You Save : {{saving | currency:"&#8377 ":0}}</p>
+					</div>
+					<div class="row row-centered bgDark2">
+						<p>Initial Payable: {{initial_payable | currency:"&#8377 ":0}}</p>
+						<p><button class="btn button-style button-width btn-IR" 
+						ng-click="rentBook()" ng-disabled="disableRent()">RENT NOW</button></p>
+					</div>
+					<div class="row row-centered bgLighter">
+						<p>Refund of <span id="red-text">{{refund | currency:"&#8377 ":0}}</span> on return before <span id="red-text">{{before | currency:"&#8377 ":0}}</span></p>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		<div class="col-lg-4 col-md-5 col-sm-12 col-xs-12" ng-show="showNotifyMe">
+		<form novalidate="novalidate" ng-submit="notifyBookshelf()">
+			<div class="row form-group">
+				<div align="center" style="margin-bottom: 10px;"><img src="app/images/images/notify.png" alt=""></div>
+				<p style="color: grey;"><b>Notify me when this product is in stock:</b></p>
+				<input type="email" ng-model="notify_email" required style="color:black !important; margin-bottom: 10px !important; width: 100%;" placeholder="Enter your Email-Id">
+				<p><button class="btn btn-IR" type="submit">Notify Me</button></p>
+			</div>
+		</form>
+		</div>
+		<div class="col-lg-4 col-md-5 col-sm-12 col-xs-12" ng-show="showAddToWishlist">
+			<div class="row row-centered bgDark2">
+				<p><button class="btn button-style button-width btn-IR" 
+				ng-click="addToWishlist()">Add to Wishlist</button></p>
+			</div>
+		</div>
+		<div class="col-lg-4 col-md-5 col-sm-12 col-xs-12" ng-if="addedToWishlist">
+			<div class="row row-centered bgDark2">
+				<p>Added to Wishlist</p>
+			</div>
+		</div>
+
+		<div class="col-lg-4 col-md-5 col-sm-12 col-xs-12" ng-if="addedToNotification">
+			<div class="row row-centered bgDark2">
+				<p>Thanks, We will notify when the book is available</p>
+			</div>
+		</div>
+		
+	</div>
+	<hr>
+	<!-- <div class="row">
+		<div><h3>RECOMMENDED BUNDLE FOR NAME OF THE BOOK</h3></div><hr id="line">
+		<div class="well well-sm white-background">
+			<div class="btn-group" role="group" aria-label="">
+				<button type="button" class="btn button-style button-grey">Bundle 1</button>
+				<button type="button" class="btn button-style button-grey">Bundle 2</button>
+				<button type="button" class="btn button-style button-grey">Bundle 3</button>
+			</div>
+			<div class="comboCont row">
+				<div class="col-lg-8 col-md-8 col-sm-12 comboImgCont">
+					<div class="comboDiv">
+						<a href="#">
+							<img src="app/images/images/book1.jpg" alt="BOOKNAME">
+							<p>BOOK TITLE</p>
+						</a>
+					</div>
+					<span class="comboPlus">+</span>
+					<div class="comboDiv">
+						<a href="#">
+							<img src="app/images/images/book1.jpg" alt="BOOKNAME">
+							<p>BOOK TITLE</p>
+						</a>
+					</div>
+					<span class="comboPlus">+</span>
+					<div class="comboDiv">
+						<a href="#">
+						<img src="app/images/images/book1.jpg" alt="BOOKNAME">
+						<p>BOOK TITLE</p>
+						</a>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-4 col-sm-12 row-centered">
+					<p><b>Total Initial Payable:</b></p>
+					<p><b>&#8377 100</b></p>
+					<p><button class="btn button-style btn-IR" 
+						>
+					RENT NOW</button></p>
+				</div>
+			</div>
+		</div>
+	</div> -->
+	<!-- <div class="carousel-contain productslider">
+		<div class="carousel-heading">
+	          <h3><b>Similar Books</b></h3>
+	      </div>
+		<slick infinite="true" slides-to-show=6 slides-to-scroll=3  next-arrow=".right.similar" prev-arrow=".left.similar" autoplay="true">
+			<div id="productslider">
+				<a href="#">
+					<img src="app/images/images/book.jpg" alt="">
+				</a>
+			</div>
+			<div id="productslider">
+				<a href="#">
+					<img src="app/images/images/book.jpg" alt="">
+				</a>
+			</div>
+			<div id="productslider">
+				<a href="#">
+					<img src="app/images/images/book.jpg" alt="">
+				</a>
+			</div>
+			<div id="productslider">
+				<a href="#">
+					<img src="app/images/images/book.jpg" alt="">
+				</a>
+			</div>
+			<div id="productslider">
+				<a href="#">
+					<img src="app/images/images/book.jpg" alt="">
+				</a>
+			</div>
+			<div id="productslider">
+				<a href="#">
+					<img src="app/images/images/book.jpg" alt="">
+				</a>
+			</div>
+			<div id="productslider">
+				<a href="#">
+					<img src="app/images/images/book.jpg" alt="">
+				</a>
+			</div>
+			<div id="productslider">
+				<a href="#">
+					<img src="app/images/images/book.jpg" alt="">
+				</a>
+			</div>
+			<div id="productslider">
+				<a href="#">
+					<img src="app/images/images/book.jpg" alt="">
+				</a>
+			</div>
+			<div id="productslider">
+				<a href="#">
+					<img src="app/images/images/book.jpg" alt="">
+				</a>
+			</div>
+			<div id="productslider">
+				<a href="#">
+					<img src="app/images/images/book.jpg" alt="">
+				</a>
+			</div>
+			<div id="productslider">
+				<a href="#">
+					<img src="app/images/images/book.jpg" alt="">
+				</a>
+			</div>
+		</slick>
+		<div class="left similar"style="left:-50px; top:75px">
+	        <span><img src="app/images/images/grey_arrow_left.png"></span>
+	      </div>
+	      <div class="right similar"style="right:30px; top:75px">
+	        <span><img src="app/images/images/grey_arrow_right.png"></span>
+	      </div>
+	</div> -->
+	<div class="row">
+		<h4 ng-show="containsWords(book.longDesc)">Summary of <span>{{book.title}}</span></h4>
+		<p ng-show="book.longDesc">{{book.longDesc}}</p>
+		<hr>
+		<h4 ng-show="containsWords(book.authorBio)">About <span>{{book.author1}}</span></h4>
+		<p ng-show="book.authorBio">{{book.authorBio}}</p>
+		<hr>
+		<h4>Book Details</h4>
+		<p><span class="detailsCol1">Publisher</span><span class="detailsCol2">:</span><span>&nbsp;&nbsp;{{book.publisherName}}</span></p>
+			<p ng-show="book.imprintName"><span class="detailsCol1">Imprint</span><span class="detailsCol2">:&nbsp;&nbsp;</span><span>{{book.imprintName}}</span></p>
+			<p ng-show="book.totalPages"><span class="detailsCol1">No. of Pages</span><span class="detailsCol2">:</span><span>&nbsp;&nbsp;{{book.totalPages}}</span></p>
+			<p ng-show="book.publicationDate"><span class="detailsCol1">Publication year</span><span class="detailsCol2">:</span><span>&nbsp;&nbsp;{{book.publicationDate}}</span></p>
+			<p ng-show="book.isbn13"><span class="detailsCol1">ISBN-13</span><span class="detailsCol2">:</span><span>&nbsp;&nbsp;{{book.isbn13}}</span></p>
+			<p><span class="detailsCol1">Binding</span><span class="detailsCol2">:</span><span>&nbsp;&nbsp;Paperback</span></p>
+	</div>
+	<!-- <div class="carousel-contain productslider" style="margin-bottom: 20px;">
+		<div class="carousel-heading">
+	          <h3><b>Browsing History</b></h3>
+	      </div>
+		<slick infinite="true" slides-to-show=6 slides-to-scroll=3  next-arrow=".right.similar" prev-arrow=".left.similar" autoplay="true">
+			<div id="productslider">
+				<a href="#">
+					<img src="app/images/images/book.jpg" alt="">
+				</a>
+			</div>
+			<div id="productslider">
+				<a href="#">
+					<img src="app/images/images/book.jpg" alt="">
+				</a>
+			</div>
+			<div id="productslider">
+				<a href="#">
+					<img src="app/images/images/book.jpg" alt="">
+				</a>
+			</div>
+			<div id="productslider">
+				<a href="#">
+					<img src="app/images/images/book.jpg" alt="">
+				</a>
+			</div>
+			<div id="productslider">
+				<a href="#">
+					<img src="app/images/images/book.jpg" alt="">
+				</a>
+			</div>
+			<div id="productslider">
+				<a href="#">
+					<img src="app/images/images/book.jpg" alt="">
+				</a>
+			</div>
+			<div id="productslider">
+				<a href="#">
+					<img src="app/images/images/book.jpg" alt="">
+				</a>
+			</div>
+			<div id="productslider">
+				<a href="#">
+					<img src="app/images/images/book.jpg" alt="">
+				</a>
+			</div>
+			<div id="productslider">
+				<a href="#">
+					<img src="app/images/images/book.jpg" alt="">
+				</a>
+			</div>
+			<div id="productslider">
+				<a href="#">
+					<img src="app/images/images/book.jpg" alt="">
+				</a>
+			</div>
+			<div id="productslider">
+				<a href="#">
+					<img src="app/images/images/book.jpg" alt="">
+				</a>
+			</div>
+			<div id="productslider">
+				<a href="#">
+					<img src="app/images/images/book.jpg" alt="">
+				</a>
+			</div>
+		</slick>
+		<div class="left similar"style="left:-50px; top:75px">
+	        <span><img src="app/images/images/grey_arrow_left.png"></span>
+	      </div>
+	      <div class="right similar"style="right:30px; top:75px">
+	        <span><img src="app/images/images/grey_arrow_right.png"></span>
+	      </div>
+	</div> -->
+</div>

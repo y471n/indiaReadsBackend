@@ -1,0 +1,66 @@
+<div class="input-group col-md-12" align="center" ng-show="in_loading">
+	<img class="spinner"  src="app/images/images/spinner.gif" />
+</div>
+<div ng-hide="in_loading">
+	<div class="row store">
+		<div class="col-md-6">
+			<div class="row">
+				<div class="col-xs-2"></div>
+				<div class="col-xs-8"><img src="app/images/images/image_storecredits.png" alt="storecredits" class="img-responsive"></div>
+				<div class="col-xs-2"></div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="row row-centered">
+				<div class="col-md-2 col-xs-2"></div>
+				<div class="col-md-9 col-xs-8 credit clearfix">
+					<h3>Your Store Credits</h3>
+					<h3 id="red-text" class="creditsValue">Rs. {{store_credit}}</h3>
+				</div>
+				<div class="col-md-1 col-xs-2"></div>
+			</div>
+		</div>
+	</div>
+	<div class="wltCont">
+		<div class="mainWlt">
+			<div class="mwTran">
+				<div class="bgDark">
+					<ul class="tranhead">
+						<li class="col-lg-3 col-md-3 col-sm-3">ISSUE/DEDUCTION DATE</li>
+						<li class="col-lg-2 col-md-2 col-sm-2">AMOUNT</li>
+						<li class="col-lg-2 col-md-2 col-sm-2">ORDER ID</li>
+						<li class="col-lg-3 col-md-3 col-sm-3">ISSUE/DEDUCTION REASON</li>
+						<li class="col-lg-2 col-md-2 col-sm-2">STATUS</li>
+						<div class="clear"></div>
+					</ul>
+				</div>
+				<div class="bgDcL">
+					<ul class="tranitem" ng-repeat="row in storeCreditDetailsService.details">
+						<li class="col-lg-3 col-md-3 col-sm-3">
+							<span class="hiddentran">ISSUE/DEDUCTION DATE :</span>
+							<p id="time">{{row.when}}</p>
+						</li>
+						<li class="col-lg-2 col-md-2 col-sm-2">
+							<span class="hiddentran">AMOUNT :</span>
+							{{row.store_credit}}
+						</li>
+						<li class="col-lg-2 col-md-2 col-sm-2">
+							<span class="hiddentran">ORDER ID :</span>
+							{{row.id}}
+						</li>
+						<li class="col-lg-3 col-md-3 col-sm-3">
+							<span class="hiddentran">ISSUE/DEDUCTION REASON :</span>
+							{{row.why_name}}
+						</li>
+						<li class="col-lg-2 col-md-2 col-sm-2">
+							<span class="hiddentran">STATUS :</span>
+							{{row.status}}
+						</li>
+						<div class="clear"></div>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="wltInfo"></div>
+	</div>
+</div>

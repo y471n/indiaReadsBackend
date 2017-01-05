@@ -1,0 +1,23 @@
+<div class="input-group col-md-12" align="center" ng-show="in_loading">
+	<img class="spinner"  src="app/images/images/spinner.gif" />
+</div>
+<div class="row" ng-hide="in_loading">
+	<div class="col-md-6 col-sm-6 col-xs-12 well white-background" ng-repeat="book in bookshelfService.wishlist">
+		<div class="row">
+			<div class="col-100">
+				<a href="#">
+					<img ng-src="https://s3-ap-southeast-1.amazonaws.com/ireads/images/books/{{book.isbn13}}.jpg" fallback-src="app/images/images/book.jpg" alt="book image" class="img-responsive">
+				</a>
+			</div><!-- col100 -->
+			<div class="col-220">
+				<h4 id="nameofbook">{{book.title}}</h4>
+				<h5 id="nameofauthor">by {{book.author1}}</h5>
+				<p id="bookdescription">Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+					sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+					Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi 
+					ut aliquip ex ea commodo consequat...</p>
+				<a href="#" class="del"><span class="glyphicon glyphicon-trash"></span></a>
+			</div><!-- col220 -->
+		</div><!-- row -->
+	</div><!-- col-md-6 -->
+</div><!-- row -->

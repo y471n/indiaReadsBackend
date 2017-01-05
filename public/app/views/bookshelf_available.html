@@ -1,0 +1,29 @@
+<div class="row">
+	<div class="input-group col-md-12" align="center" ng-show="in_loading">
+		<img class="spinner"  src="app/images/images/spinner.gif" />
+	</div>
+	<div class="col-md-6 col-sm-6 col-xs-12 well white-background" ng-repeat="book in bookshelfService.available" ng-hide="in_loading">
+		<div class="row">
+			<div class="col-100">
+				<a href="#">
+					<img ng-src="https://s3-ap-southeast-1.amazonaws.com/ireads/images/books/{{book.isbn13}}.jpg" fallback-src="app/images/images/book.jpg" alt="book image" class="img-responsive">
+				</a>
+			</div><!-- col100 -->
+			<div class="col-220">
+				<h4 id="nameofbook">{{book.title}}</h4>
+				<h5 id="nameofauthor">by {{book.author1}}</h5>
+				<h5 id="mrp">MRP: <strike>Rs.397</strike></h5>
+				<h5 id="red-text" class="rent">Rent starts at: Rs. 54</h5>
+				<h5 id="initialpayable">Initial Payable: {{book.initialPayable}}</h5>
+				<div class="dashed-border">
+					<h6><span class="glyphicon glyphicon-saved"></span>Guranteed Delivered by <b>Sep 22</b></h6>
+				</div>
+				<div class="row row-centered margintop">
+					<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"><span>Add to Cart <input type="checkbox"></span></div>
+
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 pull-right"><a href=""><span class="glyphicon glyphicon-trash"></span></a></div>
+				</div>
+			</div><!-- col220 -->
+		</div><!-- row -->
+	</div><!-- col-md-6 -->
+</div><!-- row -->

@@ -1,0 +1,37 @@
+<div class="sub-header">
+	<p align="center" style="padding:5px;">My Account</p>
+</div><!-- sub-header -->
+<div class="row">
+	<!--List  -->
+  	<div class="col-md-3">
+        <ul class="nav nav-pills nav-stacked side-menu coside-menu" role="tablist">
+        	<li role="presentation" class="marginbottom">
+        		<div class="row-centered"><p>My Account</p></div>
+        	</li>
+        	<li role="presentation" ui-sref-active="active">
+		    	<a ui-sref="account.bookshelf" role="tab">Bookshelf</a>
+		    </li>
+			<li role="presentation" ui-sref-active="active">
+		    	<a ui-sref="account.myorders" role="tab" >My Orders</a>
+		    </li>
+			<li role="presentation" ui-sref-active="active">
+		    	<a ui-sref="account.storecredits" role="tab" >Store Credits</a>
+		    </li>
+			<li role="presentation" ui-sref-active="active">
+		    	<a ui-sref="account.addressbook" role="tab">Address Book</a>
+		    </li>
+            <li role="presentation" ui-sref-active="active">
+		    	<a ui-sref="account.myprofile" role="tab" >My Profile</a>
+		    </li>
+            <li role="presentation" ui-sref-active="active">
+		    	<a ui-sref="account.changepassword" role="tab" >Change Password</a>
+		    </li>
+            <li role="presentation" ui-sref-active="active">
+		    	<a ui-sref="account.logout" ng-click="logout()" role="tab">Logout</a>
+		    </li>
+      	</ul>
+	</div>
+	<div class="tab-content col-md-9">
+		<div ui-view=""></div>
+	</div>
+</div>

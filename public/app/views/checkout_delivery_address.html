@@ -1,0 +1,67 @@
+<div class="input-group col-md-12" align="center" ng-show="in_loading">
+	<img class="spinner"  src="app/images/images/spinner.gif" />
+</div>
+<div role="tabpanel" class="tab-pane" id="delAddCO" ng-hide="in_loading">
+	<div ng-if="isAuthenticated()">
+		<div class="row address-card-view" >
+		    <div class="col-sm-6 col-md-3" ng-repeat="delivery_address in deliveryAddressService.deliveryAddresses">
+	        	<a href="#" ng-click="selectAddress(delivery_address, delivery_address.addressBookID)">
+	            <div class="thumbnail">
+	              <div class="caption">
+	                <ul class="list-unstyled">
+	                  <li>{{delivery_address.fullName}}</li>
+	                  <li>{{delivery_address.addressLine1}}</li>
+	                  <li>{{delivery_address.addressLine2}}</li>
+	                  <li>{{delivery_address.city}} - {{delivery_address.pincode}}</li>
+	                  <li>{{delivery_address.state}}</li>
+	                  <li>phone: {{delivery_address.phone}}</li>
+	                </ul>
+	              </div><!-- caption -->
+	              <a href="#"><span class="glyphicon glyphicon-trash"></span></a>
+	              <a href="#"><span class="glyphicon glyphicon-pencil" style="float:right;"></span></a>
+	            </div><!-- thumbnail --> 
+	          </a>
+			</div><!-- col-sm-6 -->
+		</div><!-- address-card-view -->	
+	</div>
+</div>
+<div class="row-centered"  ng-if="isAuthenticated()">
+	<button class="btn btn-link btn-linkIR" ng-click="addAddressForm()">Add new address 
+		<span class="glyphicon glyphicon-plus-sign"></span>
+	</button>
+</div>
+<div ng-if="showAddressForm()">
+	<form class="col-lg-6 col-md-8 col-sm-10 col-xs-12" novalidate="novalidate" ng-submit="addAddress()">
+		<div class="form-group">
+			<label for="addnewLine0">Full Name</label>
+			<input type="text" id="addnewLine0" class="form-control" ng-model="address.fullname" ng-minlength="3" required>
+		</div>
+		<div class="form-group">
+			<label for="addnewLine1">Address Line1</label><input type="textarea" id="addnewLine1" 
+			class="form-control" ng-model="address.addressline1" ng-minlength="3" required>
+		</div>
+		<div class="form-group">
+			<label for="addnewLine2">Landmark</label><input type="text" id="addnewLine2" class="form-control" ng-model="address.addressline2">
+		</div>
+		<div class="form-group">
+			<label for="addnewLine3">City</label><input type="text" id="addnewLine3" class="form-control"
+			ng-model="address.city" required>
+		</div>
+		<div class="form-group">
+			<label for="addnewLine4">State</label><input type="text" id="addnewLine4" class="form-control"
+			ng-model="address.state" required>
+		</div>
+		<div class="form-group">
+			<label for="addnewLine5">Pincode</label><input type="text" id="addnewLine5"  class="form-control" ng-model="address.pincode" required>
+		</div>
+		<div class="form-group">
+			<label for="addnewLine6">Phone Number</label>
+			<div class="input-group">
+				<span class="input-group-addon">+91-</span> 
+				<input type="text" classdiv"phonenumber" id="addnewLine6" class="form-control" 
+				ng-model="address.phone" ng-minlength="10" ng-maxlength="10" required>
+			</div>
+		</div>
+		<div class="form-group"><button class="btn btn-IR">Deliver here</button></div>
+	</form>
+</div>
